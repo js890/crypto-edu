@@ -58,7 +58,6 @@ header p {
   border-radius: 12px;
   padding: 2rem;
   margin-bottom: 2rem;
-  box-shadow: 0 4px 20px var(--accent-glow);
 }
 
 .card h2 {
