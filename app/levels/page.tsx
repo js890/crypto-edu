@@ -2,8 +2,8 @@ import Link from "next/link";
 
 export default function LevelsPage() {
   return (
-    <main className="container">
-      <div className="flex items-center justify-between mb-8">
+    <main className="container space-y-8">
+      <div className="flex items-center justify-between">
         <Link
           href="/"
           className="text-sm hover:underline"
@@ -16,7 +16,7 @@ export default function LevelsPage() {
         </span>
       </div>
 
-      <header>
+      <header className="mb-0">
         <h1>Level Path</h1>
         <p>
           Two halves—Crypto and Technology—woven into bite-sized minigames.
@@ -24,49 +24,52 @@ export default function LevelsPage() {
       </header>
 
       {/* Level Path Visualization */}
-      <div className="flex flex-col items-center gap-4">
+      <div className="flex flex-col items-center gap-5 pt-2">
         {/* Level 1 - Unlocked */}
         <div
-          className="card w-full max-w-md mb-0 border-2"
+          className="card w-full max-w-md mb-0 p-7 border-2 space-y-4"
           style={{ borderColor: "var(--accent-color)" }}
         >
-          <div className="flex items-center justify-between mb-2">
-            <span
-              className="text-xs font-bold uppercase tracking-wider"
-              style={{ color: "var(--accent-color)" }}
-            >
-              Level 01 &bull; Tech &amp; Crypto Foundations &bull; Available
-            </span>
-          </div>
-          <h2>Keys &amp; Wallets</h2>
-          <p>
+          <span
+            className="text-xs font-bold uppercase tracking-wider block"
+            style={{ color: "var(--accent-color)" }}
+          >
+            Level 01 &bull; Available
+          </span>
+          <h2 className="mb-0">Keys &amp; Wallets</h2>
+          <p className="mb-0 leading-relaxed">
             See how public and private keys work when authorizing a transaction or
             proving ownership.
           </p>
-          <button
-            type="button"
-            className="mt-2 px-5 py-2.5 rounded-lg font-semibold text-sm text-[#0b0f19] bg-[#38bdf8] hover:opacity-90 transition-opacity"
-          >
-            Play Level 1 (Coming Next)
-          </button>
+          <div className="pt-2">
+            <button
+              type="button"
+              className="group inline-flex items-center gap-2.5 px-6 py-3 rounded-xl font-bold text-sm text-[#0b0f19] bg-gradient-to-r from-[#38bdf8] via-[#60a5fa] to-[#818cf8] shadow-[0_0_24px_rgba(56,189,248,0.25)] hover:shadow-[0_0_32px_rgba(129,140,248,0.4)] hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 cursor-pointer"
+            >
+              <span>Play Level 1</span>
+              <span className="transition-transform duration-200 group-hover:translate-x-1">
+                &rarr;
+              </span>
+            </button>
+          </div>
         </div>
 
         {/* Connector */}
         <div
-          className="h-8 w-0.5"
+          className="h-9 w-0.5"
           style={{ backgroundColor: "var(--border-color)" }}
         />
 
         {/* Level 2 - Locked */}
-        <div className="card w-full max-w-md mb-0 opacity-60">
+        <div className="card w-full max-w-md mb-0 p-7 opacity-60 space-y-2">
           <span
-            className="text-xs font-bold uppercase tracking-wider block mb-2"
+            className="text-xs font-bold uppercase tracking-wider block"
             style={{ color: "var(--text-secondary)" }}
           >
-            Level 02 &bull; Crypto Half &bull; Locked
+            Level 02 &bull; Locked
           </span>
-          <h2>First Trade: Supply &amp; Volatility</h2>
-          <p className="mb-0">
+          <h2 className="mb-0">First Trade: Supply &amp; Volatility</h2>
+          <p className="mb-0 leading-relaxed">
             Manage a starter budget through a simulated market cycle and weigh risk
             vs. reward.
           </p>
@@ -74,59 +77,56 @@ export default function LevelsPage() {
 
         {/* Split Branch Indicator */}
         <div
-          className="h-8 w-0.5"
+          className="h-9 w-0.5"
           style={{ backgroundColor: "var(--border-color)" }}
         />
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 w-full">
           {[
             {
               num: "03",
-              tag: "Tech Half",
               title: "Hash Lab",
               desc: "Spot tampering and see how cryptographic hashes behave.",
             },
             {
               num: "04",
-              tag: "Crypto & Tech",
               title: "Gas & Fees",
               desc: "Trade off speed and network costs when sending value.",
             },
             {
               num: "05",
-              tag: "Crypto Half",
               title: "Risk & Diversification",
               desc: "Handle swings across multiple assets without going all-in.",
             },
           ].map((lvl) => (
-            <div key={lvl.num} className="card mb-0 opacity-60 p-5">
+            <div key={lvl.num} className="card mb-0 opacity-60 p-6 space-y-2">
               <span
-                className="text-xs font-bold uppercase tracking-wider block mb-1"
+                className="text-xs font-bold uppercase tracking-wider block"
                 style={{ color: "var(--text-secondary)" }}
               >
-                Level {lvl.num} &bull; {lvl.tag} &bull; Locked
+                Level {lvl.num} &bull; Locked
               </span>
-              <h2 className="text-lg">{lvl.title}</h2>
-              <p className="text-sm mb-0">{lvl.desc}</p>
+              <h2 className="text-lg mb-0">{lvl.title}</h2>
+              <p className="text-sm mb-0 leading-relaxed">{lvl.desc}</p>
             </div>
           ))}
         </div>
 
         {/* Convergence Indicator */}
         <div
-          className="h-8 w-0.5"
+          className="h-9 w-0.5"
           style={{ backgroundColor: "var(--border-color)" }}
         />
 
         {/* Level 6 - Capstone */}
-        <div className="card w-full max-w-md mb-0 opacity-60">
+        <div className="card w-full max-w-md mb-0 p-7 opacity-60 space-y-2">
           <span
-            className="text-xs font-bold uppercase tracking-wider block mb-2"
+            className="text-xs font-bold uppercase tracking-wider block"
             style={{ color: "var(--text-secondary)" }}
           >
-            Level 06 &bull; Both Halves &bull; Requires Levels 3, 4 &amp; 5
+            Level 06 &bull; Requires Levels 3, 4 &amp; 5
           </span>
-          <h2>Mainnet Launch</h2>
-          <p className="mb-0">
+          <h2 className="mb-0">Mainnet Launch</h2>
+          <p className="mb-0 leading-relaxed">
             Put security, fees, and market decisions together in a final round.
           </p>
         </div>

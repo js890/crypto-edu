@@ -2,93 +2,100 @@ import Link from "next/link";
 
 export default function TitleScreen() {
   return (
-    <main className="min-h-screen flex flex-col items-center justify-center px-4 py-12">
-      <div className="w-full max-w-2xl text-center">
-        {/* Badge */}
-        <div
-          className="inline-block px-3 py-1 mb-6 text-xs font-semibold tracking-wider uppercase rounded-full border"
-          style={{
-            backgroundColor: "var(--accent-glow)",
-            borderColor: "var(--accent-color)",
-            color: "var(--accent-color)",
-          }}
-        >
-          Two Halves: Crypto &amp; Technology
+    <main className="min-h-screen flex flex-col justify-between px-6 py-14 sm:py-20">
+      {/* Main Content */}
+      <div className="w-full max-w-2xl mx-auto my-auto text-center space-y-10">
+        {/* Game Title & Hook */}
+        <div className="space-y-5">
+          <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight leading-tight bg-gradient-to-r from-[#38bdf8] via-[#60a5fa] to-[#818cf8] bg-clip-text text-transparent">
+            Crypto and Technological Friends
+          </h1>
+
+          <p
+            className="text-lg sm:text-xl leading-relaxed max-w-xl mx-auto"
+            style={{ color: "var(--text-secondary)" }}
+          >
+            An interactive game helping high schoolers explore{" "}
+            <strong className="text-[#f3f4f6] font-semibold">Crypto</strong>{" "}
+            (finance, risk, and markets) and{" "}
+            <strong className="text-[#f3f4f6] font-semibold">Technology</strong>{" "}
+            (cryptography, keys, and how systems work under the hood).
+          </p>
         </div>
 
-        {/* Game Title */}
-        <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight mb-4 bg-gradient-to-r from-[#38bdf8] to-[#818cf8] bg-clip-text text-transparent">
-          Crypto and Technological Friends
-        </h1>
-
-        <p
-          className="text-lg sm:text-xl mb-10 max-w-xl mx-auto"
-          style={{ color: "var(--text-secondary)" }}
-        >
-          A high school game built around two halves—<strong>Crypto</strong> (finance,
-          risk, markets, and incentives) and <strong>Technology</strong> (cryptography,
-          keys, hashing, and how systems actually work under the hood).
-        </p>
-
         {/* Overview Card */}
-        <div className="card text-left">
-          <h2>How It Works</h2>
-          <p>
-            Work your way along a path of minigames that blend financial decision-making
-            with real technical mechanics—giving you practical intuition beyond standard
-            high school classes.
-          </p>
+        <div className="card text-left p-7 sm:p-8 space-y-6 mb-0">
+          <div className="space-y-2">
+            <h2 className="mb-0">How It Works</h2>
+            <p className="mb-0 leading-relaxed">
+              Move through a path of bite-sized minigames that mix real-world
+              financial trade-offs with hands-on technical mechanics—going
+              deeper than standard high school material.
+            </p>
+          </div>
+
           <div
-            className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6 pt-6 border-t text-sm"
+            className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-6 border-t text-sm"
             style={{ borderColor: "var(--border-color)" }}
           >
-            <div>
+            <div className="space-y-1">
               <span className="font-semibold block text-[#f3f4f6]">
-                1. The Crypto Half
+                1. Play Minigames
               </span>
-              <span style={{ color: "var(--text-secondary)" }}>
-                Explore value, volatility, trade-offs, and market scenarios.
+              <span
+                className="block leading-relaxed"
+                style={{ color: "var(--text-secondary)" }}
+              >
+                Make choices in focused finance and tech challenges.
               </span>
             </div>
-            <div>
+            <div className="space-y-1">
               <span className="font-semibold block text-[#f3f4f6]">
-                2. The Tech Half
+                2. Follow the Path
               </span>
-              <span style={{ color: "var(--text-secondary)" }}>
-                Get hands-on with keys, signatures, hashes, and protocols.
+              <span
+                className="block leading-relaxed"
+                style={{ color: "var(--text-secondary)" }}
+              >
+                Progress step by step, including split branches later on.
               </span>
             </div>
-            <div>
+            <div className="space-y-1">
               <span className="font-semibold block text-[#f3f4f6]">
-                3. Path &amp; Minigames
+                3. See How It Works
               </span>
-              <span style={{ color: "var(--text-secondary)" }}>
-                Follow the map step by step—including split branches ahead.
+              <span
+                className="block leading-relaxed"
+                style={{ color: "var(--text-secondary)" }}
+              >
+                Learn the concepts behind the outcomes as you play.
               </span>
             </div>
           </div>
         </div>
 
-        {/* Primary Action */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-2">
+        {/* Primary Action Button */}
+        <div className="pt-2 flex justify-center">
           <Link
             href="/levels"
-            className="w-full sm:w-auto px-8 py-4 rounded-xl font-bold text-lg text-[#0b0f19] bg-gradient-to-r from-[#38bdf8] to-[#818cf8] hover:opacity-90 transition-opacity shadow-lg"
+            className="group relative inline-flex items-center justify-center gap-3 px-9 py-4 rounded-2xl font-bold text-lg text-[#0b0f19] bg-gradient-to-r from-[#38bdf8] via-[#60a5fa] to-[#818cf8] shadow-[0_0_30px_rgba(56,189,248,0.28)] hover:shadow-[0_0_40px_rgba(129,140,248,0.45)] hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200"
           >
-            Begin Journey &rarr;
+            <span>Start Levels</span>
+            <span className="transition-transform duration-200 group-hover:translate-x-1">
+              &rarr;
+            </span>
           </Link>
         </div>
-
-        {/* Future secondary links placeholder */}
-        <div
-          className="mt-12 flex items-center justify-center gap-6 text-sm"
-          style={{ color: "var(--text-secondary)" }}
-        >
-          <span>v0.1 Prototype</span>
-          <span>&bull;</span>
-          <span className="opacity-60">Credits (Coming Soon)</span>
-        </div>
       </div>
+
+      {/* Footer at Very Bottom */}
+      <footer
+        className="w-full max-w-2xl mx-auto pt-12 flex items-center justify-center gap-8 text-sm"
+        style={{ color: "var(--text-secondary)" }}
+      >
+        <span>v0.1</span>
+        <span className="opacity-60">Credits (Coming Soon)</span>
+      </footer>
     </main>
   );
 }
