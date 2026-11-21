@@ -2,132 +2,161 @@ import Link from "next/link";
 
 export default function LevelsPage() {
   return (
-    <main className="container space-y-8">
-      <div className="flex items-center justify-between">
+    <main className="min-h-screen max-w-4xl mx-auto px-6 py-10 space-y-12">
+      <nav className="flex items-center justify-between border-b border-white/[0.08] pb-5">
         <Link
           href="/"
-          className="text-sm hover:underline"
-          style={{ color: "var(--accent-color)" }}
+          className="inline-flex items-center gap-2 text-sm font-medium text-slate-400 hover:text-white transition-colors"
         >
-          &larr; Back to Title
+          <span>&larr;</span>
+          <span>Title Screen</span>
         </Link>
-        <span className="text-sm" style={{ color: "var(--text-secondary)" }}>
-          Progress: 0 / 6 Levels
-        </span>
+
+        <div className="flex items-center gap-3">
+          <span className="text-xs font-semibold uppercase tracking-wider text-slate-400">
+            Campaign Progress
+          </span>
+          <span className="px-3 py-1 rounded-full text-xs font-mono font-bold bg-sky-500/10 text-sky-400 border border-sky-500/20">
+            0 / 6
+          </span>
+        </div>
+      </nav>
+
+      <div className="text-center space-y-2">
+        <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">
+          Select a Level
+        </h1>
+        <p className="text-sm sm:text-base text-slate-400">
+          Complete nodes to unlock branching{" "}
+          <span className="text-sky-400 font-medium">Tech</span> &amp;{" "}
+          <span className="text-emerald-400 font-medium">Crypto</span>{" "}
+          challenges.
+        </p>
       </div>
 
-      <header className="mb-0">
-        <h1>Level Path</h1>
-        <p>
-          Two halves—Crypto and Technology—woven into bite-sized minigames.
-        </p>
-      </header>
-
-      {/* Level Path Visualization */}
-      <div className="flex flex-col items-center gap-5 pt-2">
-        {/* Level 1 - Unlocked */}
-        <div
-          className="card w-full max-w-md mb-0 p-7 border-2 space-y-4"
-          style={{ borderColor: "var(--accent-color)" }}
-        >
-          <span
-            className="text-xs font-bold uppercase tracking-wider block"
-            style={{ color: "var(--accent-color)" }}
-          >
-            Level 01 &bull; Available
-          </span>
-          <h2 className="mb-0">Keys &amp; Wallets</h2>
-          <p className="mb-0 leading-relaxed">
-            See how public and private keys work when authorizing a transaction or
-            proving ownership.
-          </p>
-          <div className="pt-2">
-            <button
-              type="button"
-              className="group inline-flex items-center gap-2.5 px-6 py-3 rounded-xl font-bold text-sm text-[#0b0f19] bg-gradient-to-r from-[#38bdf8] via-[#60a5fa] to-[#818cf8] shadow-[0_0_24px_rgba(56,189,248,0.25)] hover:shadow-[0_0_32px_rgba(129,140,248,0.4)] hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 cursor-pointer"
-            >
-              <span>Play Level 1</span>
-              <span className="transition-transform duration-200 group-hover:translate-x-1">
-                &rarr;
-              </span>
-            </button>
+      <div className="flex flex-col items-center">
+        <div className="relative w-full max-w-md rounded-2xl p-6 sm:p-7 bg-slate-900/90 border border-sky-400/50 shadow-[0_0_50px_-12px_rgba(56,189,248,0.35)] backdrop-blur-md space-y-5">
+          <div className="flex items-center justify-between">
+            <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-sky-400">
+              <span className="w-2 h-2 rounded-full bg-sky-400 animate-ping" />
+              Level 01 &bull; Ready
+            </span>
+            <span className="px-2.5 py-0.5 rounded-md text-[11px] font-bold uppercase tracking-wider bg-sky-500/15 text-sky-300 border border-sky-400/20">
+              Tech
+            </span>
           </div>
+
+          <div className="space-y-1.5">
+            <h2 className="text-2xl font-bold text-white">
+              Keys &amp; Wallets
+            </h2>
+            <p className="text-sm text-slate-300 leading-relaxed">
+              Use public and private keys to sign transactions and prove digital
+              ownership without revealing secrets.
+            </p>
+          </div>
+
+          <button
+            type="button"
+            className="group w-full flex items-center justify-center gap-2.5 py-3.5 px-6 rounded-xl font-bold text-base text-slate-950 bg-gradient-to-r from-sky-400 via-cyan-300 to-indigo-400 shadow-lg shadow-sky-500/20 hover:shadow-sky-400/40 hover:brightness-110 active:scale-[0.99] transition-all duration-200 cursor-pointer"
+          >
+            <svg
+              className="w-4 h-4 fill-current"
+              viewBox="0 0 24 24"
+            >
+              <path d="M8 5v14l11-7z" />
+            </svg>
+            <span>Play Level 01</span>
+          </button>
         </div>
 
-        {/* Connector */}
-        <div
-          className="h-9 w-0.5"
-          style={{ backgroundColor: "var(--border-color)" }}
-        />
+        <div className="h-10 w-0.5 bg-gradient-to-b from-sky-400/60 to-white/10" />
 
-        {/* Level 2 - Locked */}
-        <div className="card w-full max-w-md mb-0 p-7 opacity-60 space-y-2">
-          <span
-            className="text-xs font-bold uppercase tracking-wider block"
-            style={{ color: "var(--text-secondary)" }}
-          >
-            Level 02 &bull; Locked
-          </span>
-          <h2 className="mb-0">First Trade: Supply &amp; Volatility</h2>
-          <p className="mb-0 leading-relaxed">
-            Manage a starter budget through a simulated market cycle and weigh risk
-            vs. reward.
+        <div className="w-full max-w-md rounded-2xl p-6 bg-slate-900/40 border border-white/[0.07] opacity-65 space-y-2">
+          <div className="flex items-center justify-between">
+            <span className="text-xs font-bold uppercase tracking-wider text-slate-500">
+              Level 02 &bull; Locked
+            </span>
+            <span className="px-2.5 py-0.5 rounded-md text-[11px] font-bold uppercase tracking-wider bg-emerald-500/10 text-emerald-400/80 border border-emerald-500/20">
+              Crypto
+            </span>
+          </div>
+          <h2 className="text-lg font-bold text-slate-200">
+            First Trade: Supply &amp; Volatility
+          </h2>
+          <p className="text-sm text-slate-400 leading-relaxed">
+            Manage a starter budget through a simulated market cycle and weigh
+            risk vs. reward.
           </p>
         </div>
 
-        {/* Split Branch Indicator */}
-        <div
-          className="h-9 w-0.5"
-          style={{ backgroundColor: "var(--border-color)" }}
-        />
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 w-full">
+        <div className="h-10 w-0.5 bg-white/10" />
+
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full">
           {[
             {
               num: "03",
+              track: "Tech",
+              trackStyle: "bg-sky-500/10 text-sky-400/80 border-sky-500/20",
               title: "Hash Lab",
               desc: "Spot tampering and see how cryptographic hashes behave.",
             },
             {
               num: "04",
+              track: "Hybrid",
+              trackStyle:
+                "bg-indigo-500/10 text-indigo-400/80 border-indigo-500/20",
               title: "Gas & Fees",
               desc: "Trade off speed and network costs when sending value.",
             },
             {
               num: "05",
-              title: "Risk & Diversification",
-              desc: "Handle swings across multiple assets without going all-in.",
+              track: "Crypto",
+              trackStyle:
+                "bg-emerald-500/10 text-emerald-400/80 border-emerald-500/20",
+              title: "Diversification",
+              desc: "Handle swings across assets without going all-in.",
             },
           ].map((lvl) => (
-            <div key={lvl.num} className="card mb-0 opacity-60 p-6 space-y-2">
-              <span
-                className="text-xs font-bold uppercase tracking-wider block"
-                style={{ color: "var(--text-secondary)" }}
-              >
-                Level {lvl.num} &bull; Locked
-              </span>
-              <h2 className="text-lg mb-0">{lvl.title}</h2>
-              <p className="text-sm mb-0 leading-relaxed">{lvl.desc}</p>
+            <div
+              key={lvl.num}
+              className="rounded-2xl p-5 bg-slate-900/40 border border-white/[0.07] opacity-65 space-y-2.5"
+            >
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-bold uppercase tracking-wider text-slate-500">
+                  Lvl {lvl.num}
+                </span>
+                <span
+                  className={`px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider border ${lvl.trackStyle}`}
+                >
+                  {lvl.track}
+                </span>
+              </div>
+              <h2 className="text-base font-bold text-slate-200">
+                {lvl.title}
+              </h2>
+              <p className="text-xs text-slate-400 leading-relaxed">
+                {lvl.desc}
+              </p>
             </div>
           ))}
         </div>
 
-        {/* Convergence Indicator */}
-        <div
-          className="h-9 w-0.5"
-          style={{ backgroundColor: "var(--border-color)" }}
-        />
+        <div className="h-10 w-0.5 bg-white/10" />
 
-        {/* Level 6 - Capstone */}
-        <div className="card w-full max-w-md mb-0 p-7 opacity-60 space-y-2">
-          <span
-            className="text-xs font-bold uppercase tracking-wider block"
-            style={{ color: "var(--text-secondary)" }}
-          >
-            Level 06 &bull; Requires Levels 3, 4 &amp; 5
-          </span>
-          <h2 className="mb-0">Mainnet Launch</h2>
-          <p className="mb-0 leading-relaxed">
-            Put security, fees, and market decisions together in a final round.
+        <div className="w-full max-w-md rounded-2xl p-6 bg-slate-900/40 border border-white/[0.07] opacity-65 space-y-2">
+          <div className="flex items-center justify-between">
+            <span className="text-xs font-bold uppercase tracking-wider text-slate-500">
+              Level 06 &bull; Finale
+            </span>
+            <span className="px-2.5 py-0.5 rounded-md text-[11px] font-bold uppercase tracking-wider bg-purple-500/10 text-purple-300/80 border border-purple-500/20">
+              Capstone
+            </span>
+          </div>
+          <h2 className="text-lg font-bold text-slate-200">Mainnet Launch</h2>
+          <p className="text-sm text-slate-400 leading-relaxed">
+            Combine key security, gas optimization, and portfolio defense in one
+            final run.
           </p>
         </div>
       </div>

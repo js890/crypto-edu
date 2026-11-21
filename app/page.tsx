@@ -2,100 +2,92 @@ import Link from "next/link";
 
 export default function TitleScreen() {
   return (
-    <main className="min-h-screen flex flex-col justify-between px-6 py-14 sm:py-20">
-      {/* Main Content */}
-      <div className="w-full max-w-2xl mx-auto my-auto text-center space-y-10">
-        {/* Game Title & Hook */}
+    <main className="relative min-h-screen flex flex-col items-center justify-center px-6 py-12 overflow-hidden">
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-gradient-to-tr from-sky-500/15 via-indigo-500/10 to-emerald-400/10 blur-3xl"
+      />
+
+      <div className="relative z-10 w-full max-w-3xl mx-auto text-center space-y-10">
+        <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/[0.04] border border-white/10 text-xs font-semibold tracking-wider uppercase text-slate-300 backdrop-blur-md">
+          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+          <span>Finance &amp; Markets</span>
+          <span className="text-slate-600">/</span>
+          <span className="w-2 h-2 rounded-full bg-sky-400 animate-pulse" />
+          <span>Cryptography &amp; Tech</span>
+        </div>
+
         <div className="space-y-5">
-          <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight leading-tight bg-gradient-to-r from-[#38bdf8] via-[#60a5fa] to-[#818cf8] bg-clip-text text-transparent">
-            Crypto and Technological Friends
+          <h1 className="text-5xl sm:text-7xl font-black tracking-tight leading-[1.08] bg-gradient-to-br from-white via-sky-200 to-indigo-400 bg-clip-text text-transparent drop-shadow-sm">
+            Crypto &amp; Technological Friends
           </h1>
 
-          <p
-            className="text-lg sm:text-xl leading-relaxed max-w-xl mx-auto"
-            style={{ color: "var(--text-secondary)" }}
-          >
-            An interactive game helping high schoolers explore{" "}
-            <strong className="text-[#f3f4f6] font-semibold">Crypto</strong>{" "}
-            (finance, risk, and markets) and{" "}
-            <strong className="text-[#f3f4f6] font-semibold">Technology</strong>{" "}
-            (cryptography, keys, and how systems work under the hood).
+          <p className="text-lg sm:text-xl text-slate-400 max-w-xl mx-auto leading-relaxed">
+            Bite-sized interactive minigames where{" "}
+            <span className="text-emerald-300 font-medium">market risk</span>{" "}
+            meets{" "}
+            <span className="text-sky-300 font-medium">
+              how systems actually work
+            </span>{" "}
+            under the hood.
           </p>
         </div>
 
-        {/* Overview Card */}
-        <div className="card text-left p-7 sm:p-8 space-y-6 mb-0">
-          <div className="space-y-2">
-            <h2 className="mb-0">How It Works</h2>
-            <p className="mb-0 leading-relaxed">
-              Move through a path of bite-sized minigames that mix real-world
-              financial trade-offs with hands-on technical mechanics—going
-              deeper than standard high school material.
-            </p>
-          </div>
-
-          <div
-            className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-6 border-t text-sm"
-            style={{ borderColor: "var(--border-color)" }}
-          >
-            <div className="space-y-1">
-              <span className="font-semibold block text-[#f3f4f6]">
-                1. Play Minigames
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-left max-w-2xl mx-auto">
+          {[
+            {
+              step: "01",
+              title: "Play Minigames",
+              desc: "Tackle fast, hands-on finance & security puzzles.",
+            },
+            {
+              step: "02",
+              title: "Branch Out",
+              desc: "Unlock split paths as mechanics combine.",
+            },
+            {
+              step: "03",
+              title: "Master the Why",
+              desc: "See the real math and code behind every outcome.",
+            },
+          ].map((item) => (
+            <div
+              key={item.step}
+              className="p-4 rounded-2xl bg-slate-900/60 border border-white/[0.07] backdrop-blur-md space-y-1.5"
+            >
+              <span className="text-xs font-mono font-bold text-sky-400">
+                {item.step}
               </span>
-              <span
-                className="block leading-relaxed"
-                style={{ color: "var(--text-secondary)" }}
-              >
-                Make choices in focused finance and tech challenges.
-              </span>
+              <h2 className="text-sm font-bold text-slate-100">{item.title}</h2>
+              <p className="text-xs text-slate-400 leading-relaxed">
+                {item.desc}
+              </p>
             </div>
-            <div className="space-y-1">
-              <span className="font-semibold block text-[#f3f4f6]">
-                2. Follow the Path
-              </span>
-              <span
-                className="block leading-relaxed"
-                style={{ color: "var(--text-secondary)" }}
-              >
-                Progress step by step, including split branches later on.
-              </span>
-            </div>
-            <div className="space-y-1">
-              <span className="font-semibold block text-[#f3f4f6]">
-                3. See How It Works
-              </span>
-              <span
-                className="block leading-relaxed"
-                style={{ color: "var(--text-secondary)" }}
-              >
-                Learn the concepts behind the outcomes as you play.
-              </span>
-            </div>
-          </div>
+          ))}
         </div>
 
-        {/* Primary Action Button */}
-        <div className="pt-2 flex justify-center">
+        <div className="pt-2">
           <Link
             href="/levels"
-            className="group relative inline-flex items-center justify-center gap-3 px-9 py-4 rounded-2xl font-bold text-lg text-[#0b0f19] bg-gradient-to-r from-[#38bdf8] via-[#60a5fa] to-[#818cf8] shadow-[0_0_30px_rgba(56,189,248,0.28)] hover:shadow-[0_0_40px_rgba(129,140,248,0.45)] hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200"
+            className="group relative inline-flex items-center justify-center gap-3 px-10 py-4 rounded-2xl font-extrabold text-lg text-slate-950 bg-gradient-to-r from-sky-400 via-blue-400 to-indigo-400 shadow-[0_0_40px_rgba(56,189,248,0.35)] hover:shadow-[0_0_55px_rgba(56,189,248,0.55)] hover:scale-[1.03] active:scale-[0.99] transition-all duration-200"
           >
-            <span>Start Levels</span>
-            <span className="transition-transform duration-200 group-hover:translate-x-1">
-              &rarr;
-            </span>
+            <span>Start Game</span>
+            <svg
+              className="w-5 h-5 transition-transform duration-200 group-hover:translate-x-1"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2.5}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M13 7l5 5m0 0l-5 5m5-5H6"
+              />
+            </svg>
           </Link>
         </div>
       </div>
-
-      {/* Footer at Very Bottom */}
-      <footer
-        className="w-full max-w-2xl mx-auto pt-12 flex items-center justify-center gap-8 text-sm"
-        style={{ color: "var(--text-secondary)" }}
-      >
-        <span>v0.1</span>
-        <span className="opacity-60">Credits (Coming Soon)</span>
-      </footer>
     </main>
   );
 }
