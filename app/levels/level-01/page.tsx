@@ -324,7 +324,7 @@ export default function LevelOnePage() {
                 <span>Check Answers!</span>
               </button>
             ) : (
-              <div className="flex flex-wrap items-center gap-5">
+              <div className="flex flex-col items-start gap-7">
                 <span className="text-sm sm:text-base font-extrabold text-[#f3f4f6]">
                   Score: {score} of {LEVEL_ONE_MCQS.length}
                   {passedThreshold
@@ -334,7 +334,7 @@ export default function LevelOnePage() {
                 <button
                   type="button"
                   onClick={handleRetry}
-                  className="secondary-action-btn px-6 py-3 text-sm cursor-pointer"
+                  className="secondary-action-btn ml-2 px-7 py-3.5 text-sm cursor-pointer"
                 >
                   <span>Try Again</span>
                 </button>

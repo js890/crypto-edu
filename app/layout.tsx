@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import { Quicksand } from "next/font/google";
+import { Fredoka } from "next/font/google";
 import "./globals.css";
 
-const quicksand = Quicksand({
+const fredoka = Fredoka({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-  variable: "--font-quicksand",
+  weight: ["300", "400", "500", "600"],
+  variable: "--font-fredoka",
 });
 
 export const metadata: Metadata = {
@@ -20,7 +20,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={quicksand.variable}>
+    <html lang="en" className={fredoka.variable}>
       <body className="font-sans antialiased">{children}</body>
     </html>
   );

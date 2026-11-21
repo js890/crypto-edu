@@ -24,8 +24,7 @@ export default function LevelTwoPage() {
               First Trade
             </h1>
             <p className="text-base sm:text-lg leading-[1.95] max-w-2xl">
-              Level 02 is unlocked and ready for you to build. Start here when
-              you are ready to design the supply, volatility, and risk challenge.
+              Level 02 is under construction.
             </p>
           </div>
         </section>

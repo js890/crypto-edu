@@ -116,6 +116,9 @@ export default function LevelsPage() {
                 <h2 className="text-2xl font-extrabold leading-snug">
                   First Trade: Supply and Volatility
                 </h2>
+                <p className="text-xs font-extrabold uppercase tracking-wide text-[#34d399]">
+                  Requires Level 01
+                </p>
                 <p className="text-sm sm:text-base leading-[2.1]">
                   Manage a starter budget through a simulated market cycle and
                   weigh risk against reward.
@@ -144,8 +147,12 @@ export default function LevelsPage() {
                 <h2 className="text-xl font-bold leading-snug">
                   First Trade: Supply and Volatility
                 </h2>
+                <p className="text-xs font-extrabold uppercase tracking-wide text-[#34d399]">
+                  Requires Level 01
+                </p>
                 <p className="text-sm sm:text-base leading-[2.1]">
-                  Complete Level 01 with at least two correct answers to unlock this level.
+                  Manage a starter budget through a simulated market cycle and
+                  weigh risk against reward.
                 </p>
               </div>
             </div>
@@ -226,7 +233,7 @@ export default function LevelsPage() {
                 Mainnet Launch
               </h2>
               <p className="text-xs font-extrabold uppercase tracking-wide text-[#a78bfa]">
-                Requires Levels 03, 04 and 05
+                Requires Levels 03-05
               </p>
               <p className="text-sm sm:text-base leading-[2]">
                 Bring key security, fee trade-offs, and portfolio risk together
