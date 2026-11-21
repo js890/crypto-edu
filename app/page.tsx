@@ -6,7 +6,6 @@ export default function TitleScreen() {
       <div className="content-narrow text-center space-y-14 sm:space-y-16">
         <div className="space-y-7 sm:space-y-9">
           <div className="hero-kicker mx-auto">
-            <span className="hero-kicker-dot" />
             Your learning adventure starts here
           </div>
           <h1 className="hero-title text-5xl sm:text-7xl lg:text-8xl font-black tracking-tight leading-[1.05] bg-gradient-to-r from-[#fde047] via-[#38bdf8] to-[#c4b5fd] bg-clip-text text-transparent">

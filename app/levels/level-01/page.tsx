@@ -147,7 +147,7 @@ export default function LevelOnePage() {
             <h1 className="text-4xl sm:text-6xl font-black leading-[1.12]">
               Welcome to the Network
             </h1>
-            <p className="text-base sm:text-lg leading-[1.9] max-w-2xl">
+            <p className="text-base sm:text-lg leading-[2.25] max-w-2xl py-2">
               Learn what <strong className="text-[#facc15]">cryptocurrency</strong> is,
               how a <strong className="text-[#34d399]">shared ledger</strong> stays in sync,
               and how <strong className="text-[#38bdf8]">miners</strong> keep the chain moving.

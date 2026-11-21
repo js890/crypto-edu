@@ -46,7 +46,6 @@ export default function LevelsPage() {
 
         <div className="text-center space-y-6 max-w-2xl mx-auto">
           <div className="hero-kicker mx-auto">
-            <span className="hero-kicker-dot" />
             Choose your next challenge
           </div>
           <h1 className="text-5xl sm:text-7xl font-black leading-[1.08]">
@@ -164,6 +163,9 @@ export default function LevelsPage() {
                 <span className="track-badge-technology">Technology</span>
               </div>
               <h2 className="text-lg font-bold leading-snug">Hash Lab</h2>
+              <p className="text-xs font-extrabold uppercase tracking-wide text-[#38bdf8]">
+                Requires Level 02
+              </p>
               <p className="text-sm leading-[2]">
                 Spot tampering and see how cryptographic hashes behave when
                 inputs change.
@@ -179,6 +181,9 @@ export default function LevelsPage() {
                 <span className="track-badge-crypto">Crypto</span>
               </div>
               <h2 className="text-lg font-bold leading-snug">Gas and Fees</h2>
+              <p className="text-xs font-extrabold uppercase tracking-wide text-[#a78bfa]">
+                Requires Level 02
+              </p>
               <p className="text-sm leading-[2]">
                 Balance confirmation speed and network costs when sending value.
               </p>
@@ -195,6 +200,9 @@ export default function LevelsPage() {
               <h2 className="text-lg font-bold leading-snug">
                 Risk and Diversification
               </h2>
+              <p className="text-xs font-extrabold uppercase tracking-wide text-[#34d399]">
+                Requires Level 02
+              </p>
               <p className="text-sm leading-[2]">
                 Handle price swings across multiple assets without putting
                 everything in one place.
@@ -217,6 +225,9 @@ export default function LevelsPage() {
               <h2 className="text-xl font-bold leading-snug">
                 Mainnet Launch
               </h2>
+              <p className="text-xs font-extrabold uppercase tracking-wide text-[#a78bfa]">
+                Requires Levels 03, 04 and 05
+              </p>
               <p className="text-sm sm:text-base leading-[2]">
                 Bring key security, fee trade-offs, and portfolio risk together
                 in one final round.
