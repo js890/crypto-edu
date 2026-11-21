@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 
 type Question = {
@@ -104,6 +104,11 @@ export default function LevelOnePage() {
   }, 0);
 
   const passedThreshold = score >= 2;
+  useEffect(() => {
+    if (submitted && passedThreshold) {
+      window.localStorage.setItem("crypto-edu:level-01-completed", "true");
+    }
+  }, [submitted, passedThreshold]);
 
   const handleSelectOption = (questionId: string, optionKey: string) => {
     if (submitted) return;

@@ -1,6 +1,30 @@
+"use client";
+
+import { useSyncExternalStore } from "react";
 import Link from "next/link";
 
+const LEVEL_ONE_COMPLETION_KEY = "crypto-edu:level-01-completed";
+
+function subscribeToCompletion(callback: () => void) {
+  window.addEventListener("storage", callback);
+  return () => window.removeEventListener("storage", callback);
+}
+
+function getLevelOneCompletion() {
+  return window.localStorage.getItem(LEVEL_ONE_COMPLETION_KEY) === "true";
+}
+
+function getServerLevelOneCompletion() {
+  return false;
+}
+
 export default function LevelsPage() {
+  const levelOneCompleted = useSyncExternalStore(
+    subscribeToCompletion,
+    getLevelOneCompletion,
+    getServerLevelOneCompletion
+  );
+
   return (
     <main className="page-shell px-6 pt-8 sm:pt-12 pb-32">
       <div className="content-wide space-y-12 sm:space-y-16">
@@ -14,7 +38,9 @@ export default function LevelsPage() {
 
           <div className="flex items-center gap-3">
             <span className="hidden sm:inline text-sm font-bold text-[#a1a9b8]">Journey progress</span>
-            <span className="text-sm sm:text-base font-black text-[#facc15]">0 / 6</span>
+            <span className="text-sm sm:text-base font-black text-[#facc15]">
+              {levelOneCompleted ? "1" : "0"} / 6
+            </span>
           </div>
         </nav>
 
@@ -27,11 +53,15 @@ export default function LevelsPage() {
             Your Learning Map
           </h1>
           <p className="text-base sm:text-lg leading-[1.9]">
-            Begin with <strong className="text-[#facc15]">Crypto</strong>,
-            expand into <strong className="text-[#38bdf8]">Technology</strong>,
-            and put it all to work with <strong className="text-[#34d399]">Finance</strong>.
+            Learn Tech and Finance in order to implement them in{" "}
+            <strong className="text-[#facc15]">Crypto</strong>.
           </p>
-          <div className="progress-track max-w-md mx-auto"><div className="progress-fill" /></div>
+          <div className="progress-track max-w-md mx-auto">
+            <div
+              className="progress-fill"
+              style={{ width: levelOneCompleted ? "16.666%" : "0%" }}
+            />
+          </div>
         </div>
 
         <div className="flex flex-col items-center">
@@ -39,7 +69,9 @@ export default function LevelsPage() {
             <div className="flex items-center justify-between gap-4">
               <div className="flex items-center gap-3">
                 <span className="level-number">01</span>
-                <span className="text-xs font-extrabold uppercase tracking-wider text-[#facc15]">Available</span>
+                <span className="text-xs font-extrabold uppercase tracking-wider text-[#facc15]">
+                  {levelOneCompleted ? "Completed" : "Available"}
+                </span>
               </div>
               <span className="track-badge-crypto">Crypto</span>
             </div>
@@ -61,7 +93,7 @@ export default function LevelsPage() {
                 href="/levels/level-01"
                 className="game-start-btn w-full py-4 px-8 text-lg sm:text-xl"
               >
-                <span>Play Level 01!</span>
+                <span>{levelOneCompleted ? "Review Level 01" : "Play Level 01!"}</span>
                 <span aria-hidden="true">&rarr;</span>
               </Link>
             </div>
@@ -69,25 +101,56 @@ export default function LevelsPage() {
 
           <div className="path-connector-active" />
 
-          <div className="surface-panel-locked w-full max-w-lg p-8 space-y-4">
-            <div className="flex items-center justify-between gap-4">
-              <div className="flex items-center gap-3">
-                <span className="level-number locked-number">02</span>
-                <span className="text-xs font-extrabold uppercase tracking-wider text-[#a1a9b8]">Locked</span>
+          {levelOneCompleted ? (
+            <div className="surface-panel-active w-full max-w-lg p-8 sm:p-9 space-y-6">
+              <div className="flex items-center justify-between gap-4">
+                <div className="flex items-center gap-3">
+                  <span className="level-number">02</span>
+                  <span className="text-xs font-extrabold uppercase tracking-wider text-[#34d399]">
+                    Available
+                  </span>
+                </div>
+                <span className="track-badge-finance">Finance</span>
               </div>
-              <span className="track-badge-finance">Finance</span>
-            </div>
 
-            <div className="space-y-3">
-              <h2 className="text-xl font-bold leading-snug">
-                First Trade: Supply and Volatility
-              </h2>
-              <p className="text-sm sm:text-base leading-[2]">
-                Manage a starter budget through a simulated market cycle and
-                weigh risk against reward.
-              </p>
+              <div className="space-y-3">
+                <h2 className="text-2xl font-extrabold leading-snug">
+                  First Trade: Supply and Volatility
+                </h2>
+                <p className="text-sm sm:text-base leading-[2.1]">
+                  Manage a starter budget through a simulated market cycle and
+                  weigh risk against reward.
+                </p>
+              </div>
+
+              <Link
+                href="/levels/level-02"
+                className="game-start-btn w-full py-4 px-8 text-lg sm:text-xl"
+              >
+                <span>Begin Level 02</span>
+                <span aria-hidden="true">&rarr;</span>
+              </Link>
             </div>
-          </div>
+          ) : (
+            <div className="surface-panel-locked w-full max-w-lg p-8 sm:p-9 space-y-4">
+              <div className="flex items-center justify-between gap-4">
+                <div className="flex items-center gap-3">
+                  <span className="level-number locked-number">02</span>
+                  <span className="text-xs font-extrabold uppercase tracking-wider text-[#a1a9b8]">Locked</span>
+                </div>
+                <span className="track-badge-finance">Finance</span>
+              </div>
+
+              <div className="space-y-3">
+                <h2 className="text-xl font-bold leading-snug">
+                  First Trade: Supply and Volatility
+                </h2>
+                <p className="text-sm sm:text-base leading-[2.1]">
+                  Complete Level 01 with at least two correct answers to unlock this level.
+                </p>
+              </div>
+            </div>
+          )}
 
           <div className="path-connector" />
 

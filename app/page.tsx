@@ -10,9 +10,7 @@ export default function TitleScreen() {
             Your learning adventure starts here
           </div>
           <h1 className="hero-title text-5xl sm:text-7xl lg:text-8xl font-black tracking-tight leading-[1.05] bg-gradient-to-r from-[#fde047] via-[#38bdf8] to-[#c4b5fd] bg-clip-text text-transparent">
-            Crypto &amp; Tech
-            <br />
-            <span className="text-[0.72em]">Made Explorable</span>
+            Crypto and Technological Friends
           </h1>
 
           <p className="text-lg sm:text-xl leading-[1.9] max-w-2xl mx-auto">
