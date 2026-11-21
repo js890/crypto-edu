@@ -3,15 +3,18 @@
 @tailwind utilities;
 
 :root {
-  --bg-color: #090d16;
+  --bg-top: #0b1020;
+  --bg-bottom: #070a12;
   --surface-color: #111827;
   --surface-elevated: #162033;
   --text-primary: #f3f4f6;
-  --text-secondary: #9ca3af;
+  --text-secondary: #a1a9b8;
   --text-muted: #6b7280;
   --accent-tech: #38bdf8;
   --accent-finance: #34d399;
-  --accent-crypto: #818cf8;
+  --accent-crypto: #a78bfa;
+  --accent-coin: #facc15;
+  --accent-mining: #9ca3af;
   --border-subtle: #1f2937;
   --border-strong: #374151;
 }
@@ -29,22 +32,24 @@
   }
 
   body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    background-color: var(--bg-color);
+    font-family: var(--font-nunito), "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background-color: var(--bg-bottom);
+    background-image: linear-gradient(180deg, var(--bg-top) 0%, #0a0e1a 48%, var(--bg-bottom) 100%);
     color: var(--text-primary);
-    line-height: 1.8;
+    line-height: 2;
     min-height: 100vh;
     overflow-x: hidden;
   }
 
   h1, h2, h3, h4 {
     color: var(--text-primary);
-    letter-spacing: -0.025em;
+    letter-spacing: -0.02em;
+    line-height: 1.3;
   }
 
   p {
     color: var(--text-secondary);
-    line-height: 1.85;
+    line-height: 2.05;
   }
 
   a {
@@ -56,19 +61,19 @@
 .page-shell {
   min-height: 100vh;
   width: 100%;
-  background-color: var(--bg-color);
+  background: transparent;
 }
 
 .content-narrow {
   width: 100%;
-  max-width: 780px;
+  max-width: 800px;
   margin-left: auto;
   margin-right: auto;
 }
 
 .content-wide {
   width: 100%;
-  max-width: 980px;
+  max-width: 1000px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -89,17 +94,17 @@
   background-color: var(--surface-color);
   border: 1px solid var(--border-subtle);
   border-radius: 16px;
-  opacity: 0.72;
+  opacity: 0.75;
 }
 
 .track-badge-technology {
   display: inline-flex;
   align-items: center;
-  padding: 0.25rem 0.75rem;
+  padding: 0.3rem 0.85rem;
   border-radius: 9999px;
   font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
+  font-weight: 800;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   color: var(--accent-tech);
   background-color: #0c2233;
@@ -109,11 +114,11 @@
 .track-badge-finance {
   display: inline-flex;
   align-items: center;
-  padding: 0.25rem 0.75rem;
+  padding: 0.3rem 0.85rem;
   border-radius: 9999px;
   font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
+  font-weight: 800;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   color: var(--accent-finance);
   background-color: #09261d;
@@ -123,35 +128,36 @@
 .track-badge-crypto {
   display: inline-flex;
   align-items: center;
-  padding: 0.25rem 0.75rem;
+  padding: 0.3rem 0.85rem;
   border-radius: 9999px;
   font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
+  font-weight: 800;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   color: var(--accent-crypto);
-  background-color: #191c3a;
-  border: 1px solid #3730a3;
+  background-color: #1c1838;
+  border: 1px solid #4c1d95;
 }
 
-.primary-action-btn {
+.game-start-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.625rem;
-  background-color: var(--accent-crypto);
-  color: #090d16;
-  font-weight: 700;
-  border-radius: 12px;
+  gap: 0.75rem;
+  background-color: var(--accent-coin);
+  color: #111827;
+  font-weight: 900;
+  border-radius: 6px;
+  border: 1px solid #fde047;
   transition: background-color 0.18s ease, transform 0.18s ease;
 }
 
-.primary-action-btn:hover {
-  background-color: #a5b4fc;
+.game-start-btn:hover {
+  background-color: #fde047;
   transform: translateY(-1px);
 }
 
-.primary-action-btn:active {
+.game-start-btn:active {
   transform: translateY(0);
 }
 
@@ -163,8 +169,8 @@
   background-color: var(--surface-elevated);
   color: var(--text-primary);
   border: 1px solid var(--border-strong);
-  font-weight: 600;
-  border-radius: 12px;
+  font-weight: 700;
+  border-radius: 6px;
   transition: border-color 0.18s ease, background-color 0.18s ease;
 }
 
@@ -176,7 +182,7 @@
 .mcq-option {
   width: 100%;
   text-align: left;
-  padding: 1rem 1.25rem;
+  padding: 1.15rem 1.35rem;
   border-radius: 12px;
   background-color: var(--surface-color);
   border: 1px solid var(--border-subtle);
@@ -191,7 +197,7 @@
 
 .mcq-option-selected {
   border-color: var(--accent-crypto);
-  background-color: #161d38;
+  background-color: #181733;
 }
 
 .mcq-option-correct {
@@ -206,12 +212,12 @@
 
 .path-connector {
   width: 2px;
-  height: 3.25rem;
+  height: 3.75rem;
   background-color: var(--border-subtle);
 }
 
 .path-connector-active {
   width: 2px;
-  height: 3.25rem;
-  background-color: var(--accent-crypto);
+  height: 3.75rem;
+  background-color: var(--accent-coin);
 }

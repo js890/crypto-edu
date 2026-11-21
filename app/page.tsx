@@ -2,81 +2,66 @@ import Link from "next/link";
 
 export default function TitleScreen() {
   return (
-    <main className="page-shell flex flex-col justify-center px-6 py-20">
-      <div className="content-narrow text-center space-y-14">
-        <div className="space-y-7">
-          <h1 className="text-5xl sm:text-7xl font-black leading-[1.15] bg-gradient-to-r from-[#38bdf8] via-[#60a5fa] to-[#818cf8] bg-clip-text text-transparent">
+    <main className="page-shell flex flex-col justify-center px-6 py-24">
+      <div className="content-narrow text-center space-y-16">
+        <div className="space-y-12">
+          <h1 className="text-6xl sm:text-8xl font-black tracking-tight leading-[1.12] bg-gradient-to-r from-[#facc15] via-[#38bdf8] to-[#a78bfa] bg-clip-text text-transparent">
             Crypto &amp; Technological Friends
           </h1>
 
-          <p className="text-lg sm:text-xl leading-[1.9] max-w-2xl mx-auto">
+          <p className="text-lg sm:text-xl leading-[2.1] max-w-2xl mx-auto">
             An interactive game for high schoolers exploring{" "}
-            <span className="text-[#34d399] font-semibold">
+            <strong className="text-[#34d399] font-extrabold">
               finance and markets
-            </span>{" "}
+            </strong>{" "}
             alongside{" "}
-            <span className="text-[#38bdf8] font-semibold">
+            <strong className="text-[#38bdf8] font-extrabold">
               cryptography and system mechanics
-            </span>
+            </strong>
             .
           </p>
         </div>
 
-        <div className="surface-panel p-8 sm:p-10 text-left space-y-8">
-          <div className="space-y-3">
-            <h2 className="text-xl font-bold leading-snug">How It Works</h2>
-            <p className="text-base leading-[1.9]">
-              Move step by step through short minigames that pair real financial
-              decisions with the technology operating underneath.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 pt-6 border-t border-[#1f2937]">
-            <div className="space-y-2.5">
-              <span className="block text-xs font-bold uppercase tracking-wider text-[#38bdf8]">
-                Step One
-              </span>
-              <h3 className="text-base font-bold leading-snug">
+        <div className="surface-panel p-8 sm:p-11 text-left">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+            <div className="space-y-4">
+              <h2 className="text-xl font-extrabold text-[#facc15] leading-snug">
                 Play Minigames
-              </h3>
-              <p className="text-sm leading-[1.85]">
-                Make focused choices across hands-on finance and security
-                challenges.
+              </h2>
+              <p className="text-sm sm:text-base leading-[2]">
+                Jump straight into punchy, interactive challenges that make
+                tricky market and tech ideas click fast.
               </p>
             </div>
 
-            <div className="space-y-2.5">
-              <span className="block text-xs font-bold uppercase tracking-wider text-[#34d399]">
-                Step Two
-              </span>
-              <h3 className="text-base font-bold leading-snug">
+            <div className="space-y-4">
+              <h2 className="text-xl font-extrabold text-[#38bdf8] leading-snug">
                 Follow the Path
-              </h3>
-              <p className="text-sm leading-[1.85]">
-                Advance along the map and unlock branching paths as ideas build.
+              </h2>
+              <p className="text-sm sm:text-base leading-[2]">
+                Work your way across a connected map where each level builds on
+                what you just learned and opens new branches.
               </p>
             </div>
 
-            <div className="space-y-2.5">
-              <span className="block text-xs font-bold uppercase tracking-wider text-[#818cf8]">
-                Step Three
-              </span>
-              <h3 className="text-base font-bold leading-snug">
-                See How It Works
-              </h3>
-              <p className="text-sm leading-[1.85]">
-                Understand the reasoning and system behavior behind every result.
+            <div className="space-y-4">
+              <h2 className="text-xl font-extrabold text-[#34d399] leading-snug">
+                Prepare Yourself for the Real World
+              </h2>
+              <p className="text-sm sm:text-base leading-[2]">
+                Pick up practical intuition that goes beyond the high school
+                curriculum so modern digital money and systems feel familiar.
               </p>
             </div>
           </div>
         </div>
 
-        <div className="pt-2">
+        <div className="pt-4">
           <Link
             href="/levels"
-            className="primary-action-btn px-10 py-4 text-lg"
+            className="game-start-btn px-14 py-5 text-xl sm:text-2xl"
           >
-            <span>Start Game</span>
+            <span>Start Game!</span>
             <span aria-hidden="true">&rarr;</span>
           </Link>
         </div>
