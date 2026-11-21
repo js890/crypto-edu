@@ -39,7 +39,7 @@
   body {
     font-family: var(--font-fredoka), "Fredoka", "Trebuchet MS", sans-serif;
     background-color: var(--bg-bottom);
-    background-image: linear-gradient(135deg, #10162c 0%, #17152f 32%, #10232d 68%, #080b16 100%);
+    background-image: linear-gradient(180deg, #10162c 0%, #13162a 55%, #080b16 100%);
     color: var(--text-primary);
     line-height: 2.28;
     letter-spacing: 0.012em;
@@ -88,7 +88,7 @@
 }
 
 .surface-panel {
-  background: linear-gradient(145deg, rgba(24, 30, 51, 0.96), rgba(18, 31, 43, 0.94));
+  background: #182033;
   border: 1px solid #2f4057;
   border-radius: 24px;
   padding: 2.25rem;
@@ -96,14 +96,14 @@
 }
 
 .surface-panel-active {
-  background: linear-gradient(145deg, rgba(42, 35, 72, 0.96), rgba(22, 43, 59, 0.94));
+  background: linear-gradient(135deg, #28213f 0%, #182e3c 100%);
   border: 1px solid var(--accent-coral);
   border-radius: 26px;
   padding: 2.25rem;
 }
 
 .surface-panel-locked {
-  background: linear-gradient(145deg, rgba(20, 28, 45, 0.96), rgba(23, 28, 44, 0.94));
+  background: #151d2e;
   border: 1px solid #30384f;
   border-radius: 22px;
   padding: 2.25rem;
@@ -123,7 +123,7 @@
   padding: 0.45rem 0.9rem;
   border: 1px solid rgba(244, 114, 182, 0.42);
   border-radius: 9999px;
-  background: linear-gradient(90deg, rgba(250, 204, 21, 0.1), rgba(244, 114, 182, 0.12));
+  background: #35253e;
   color: #fbcfe8;
   font-size: 0.76rem;
   font-weight: 900;
@@ -167,17 +167,17 @@
 .feature-card-world::after { background: #fb7185; }
 
 .feature-card-coin {
-  background: linear-gradient(145deg, rgba(52, 42, 25, 0.96), rgba(20, 24, 37, 0.96));
+  background: linear-gradient(135deg, #34301f 0%, #1b2332 100%);
   border-color: rgba(250, 204, 21, 0.28);
 }
 
 .feature-card-path {
-  background: linear-gradient(145deg, rgba(25, 46, 67, 0.96), rgba(20, 24, 45, 0.96));
+  background: linear-gradient(135deg, #20384b 0%, #1c2440 100%);
   border-color: rgba(56, 189, 248, 0.28);
 }
 
 .feature-card-world {
-  background: linear-gradient(145deg, rgba(48, 31, 53, 0.96), rgba(20, 28, 42, 0.96));
+  background: linear-gradient(135deg, #3b2741 0%, #202438 100%);
   border-color: rgba(244, 114, 182, 0.28);
 }
 
@@ -195,7 +195,7 @@
 .nav-shell {
   border: 1px solid rgba(129, 140, 248, 0.38);
   border-radius: 9999px;
-  background: linear-gradient(90deg, rgba(28, 31, 55, 0.94), rgba(20, 43, 55, 0.94));
+  background: #1a2438;
 }
 
 .nav-back-link {
@@ -293,17 +293,17 @@
 
 .grid > .surface-panel-locked:nth-child(1) {
   border-color: rgba(56, 189, 248, 0.38);
-  background: linear-gradient(145deg, rgba(19, 42, 57, 0.96), rgba(22, 27, 44, 0.94));
+  background: #182b3a;
 }
 
 .grid > .surface-panel-locked:nth-child(2) {
   border-color: rgba(167, 139, 250, 0.38);
-  background: linear-gradient(145deg, rgba(43, 35, 67, 0.96), rgba(24, 29, 47, 0.94));
+  background: #28233d;
 }
 
 .grid > .surface-panel-locked:nth-child(3) {
   border-color: rgba(45, 212, 191, 0.38);
-  background: linear-gradient(145deg, rgba(19, 48, 50, 0.96), rgba(22, 28, 44, 0.94));
+  background: #193338;
 }
 
 .lesson-header-card {
@@ -311,9 +311,7 @@
   overflow: visible;
   border: 1px solid rgba(244, 114, 182, 0.32);
   border-radius: 26px;
-  background:
-    linear-gradient(135deg, rgba(244, 114, 182, 0.12), rgba(45, 212, 191, 0.06)),
-    rgba(17, 24, 39, 0.82);
+  background: linear-gradient(135deg, #2b233f 0%, #1a303a 100%);
 }
 
 .lesson-header-card p {
@@ -323,14 +321,7 @@
 }
 
 .lesson-header-card::after {
-  content: "";
-  position: absolute;
-  top: -5rem;
-  right: -4rem;
-  width: 13rem;
-  height: 13rem;
-  border-radius: 9999px;
-  border: 1.5rem solid rgba(250, 204, 21, 0.055);
+  content: none;
 }
 
 .concept-grid {
@@ -344,7 +335,7 @@
   padding: 1.75rem;
   border: 1px solid var(--border-subtle);
   border-radius: 16px;
-  background: linear-gradient(145deg, rgba(14, 22, 39, 0.92), rgba(28, 22, 43, 0.92));
+  background: #171e30;
 }
 
 .concept-card:nth-child(1) {
@@ -419,7 +410,7 @@
   align-items: center;
   justify-content: center;
   gap: 0.75rem;
-  background: linear-gradient(135deg, #fde047, #fb923c 58%, #fb7185);
+  background: linear-gradient(120deg, #fde047 0%, #fde047 62%, #fb923c 62%, #fb923c 100%);
   color: #111827;
   font-weight: 900;
   border-radius: 14px;
@@ -458,7 +449,7 @@
   text-align: left;
   padding: 1.35rem 1.55rem;
   border-radius: 16px;
-  background: linear-gradient(145deg, rgba(17, 24, 39, 0.96), rgba(13, 18, 31, 0.96));
+  background: #111827;
   border: 1px solid var(--border-subtle);
   color: var(--text-primary);
   transition: border-color 0.18s ease, background-color 0.18s ease, transform 0.18s ease;
