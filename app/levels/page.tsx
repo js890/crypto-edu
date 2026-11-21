@@ -31,9 +31,12 @@ export default function LevelsPage() {
         <nav className="nav-shell flex items-center justify-between gap-4 px-5 py-3 sm:px-6">
           <Link
             href="/"
-            className="text-sm sm:text-base font-bold text-[#a1a9b8] hover:text-[#f3f4f6] transition-colors"
+            className="nav-back-link text-sm sm:text-base font-bold text-[#a1a9b8] hover:text-[#f3f4f6]"
           >
-            &larr; Back to Title
+            <span className="nav-arrow-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M19 12H5M11 18l-6-6 6-6" /></svg>
+            </span>
+            <span>Back to Title</span>
           </Link>
 
           <div className="flex items-center gap-3">
@@ -93,7 +96,9 @@ export default function LevelsPage() {
                 className="game-start-btn w-full py-4 px-8 text-lg sm:text-xl"
               >
                 <span>{levelOneCompleted ? "Review Level 01" : "Play Level 01!"}</span>
-                <span aria-hidden="true">&rarr;</span>
+                <span className="action-arrow-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+                </span>
               </Link>
             </div>
           </div>
@@ -130,7 +135,9 @@ export default function LevelsPage() {
                 className="game-start-btn w-full py-4 px-8 text-lg sm:text-xl"
               >
                 <span>Begin Level 02</span>
-                <span aria-hidden="true">&rarr;</span>
+                <span className="action-arrow-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+                </span>
               </Link>
             </div>
           ) : (

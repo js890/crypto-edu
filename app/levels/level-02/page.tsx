@@ -7,9 +7,12 @@ export default function LevelTwoPage() {
         <nav className="nav-shell flex items-center justify-between gap-4 px-5 py-3">
           <Link
             href="/levels"
-            className="text-sm font-bold text-[#a1a9b8] hover:text-[#f3f4f6]"
+            className="nav-back-link text-sm font-bold text-[#a1a9b8] hover:text-[#f3f4f6]"
           >
-            &larr; All Levels
+            <span className="nav-arrow-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M19 12H5M11 18l-6-6 6-6" /></svg>
+            </span>
+            <span>All Levels</span>
           </Link>
           <span className="text-sm font-black text-[#34d399]">Level 02</span>
         </nav>

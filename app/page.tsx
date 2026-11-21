@@ -8,7 +8,7 @@ export default function TitleScreen() {
           <div className="hero-kicker mx-auto">
             Your learning adventure starts here
           </div>
-          <h1 className="hero-title text-5xl sm:text-7xl lg:text-8xl font-black tracking-tight leading-[1.05] bg-gradient-to-r from-[#fde047] via-[#38bdf8] to-[#c4b5fd] bg-clip-text text-transparent">
+          <h1 className="hero-title text-5xl sm:text-7xl lg:text-8xl font-black tracking-tight leading-[1.05] bg-gradient-to-r from-[#fde047] via-[#fb7185] to-[#38bdf8] bg-clip-text text-transparent">
             Crypto and Technological Friends
           </h1>
 
@@ -59,7 +59,9 @@ export default function TitleScreen() {
             className="game-start-btn px-14 py-5 text-xl sm:text-2xl"
           >
             <span>Start Game!</span>
-            <span aria-hidden="true">&rarr;</span>
+            <span className="action-arrow-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+            </span>
           </Link>
         </div>
       </div>

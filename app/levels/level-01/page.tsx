@@ -131,8 +131,11 @@ export default function LevelOnePage() {
     <main className="page-shell px-6 pt-8 sm:pt-12 pb-32">
       <div className="content-narrow space-y-12 sm:space-y-16">
         <nav className="nav-shell flex items-center justify-between gap-4 px-5 py-3">
-          <Link href="/levels" className="text-sm font-bold text-[#a1a9b8] hover:text-[#f3f4f6]">
-            &larr; All Levels
+          <Link href="/levels" className="nav-back-link text-sm font-bold text-[#a1a9b8] hover:text-[#f3f4f6]">
+            <span className="nav-arrow-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M19 12H5M11 18l-6-6 6-6" /></svg>
+            </span>
+            <span>All Levels</span>
           </Link>
           <span className="text-sm font-black text-[#facc15]">Level 01</span>
         </nav>
