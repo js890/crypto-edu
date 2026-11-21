@@ -39,7 +39,7 @@
   body {
     font-family: var(--font-fredoka), "Fredoka", "Trebuchet MS", sans-serif;
     background-color: var(--bg-bottom);
-    background-image: linear-gradient(180deg, #10162c 0%, #13162a 55%, #080b16 100%);
+    background-color: #10162c;
     color: var(--text-primary);
     line-height: 2.28;
     letter-spacing: 0.012em;
@@ -96,7 +96,7 @@
 }
 
 .surface-panel-active {
-  background: linear-gradient(135deg, #28213f 0%, #182e3c 100%);
+  background: #28213f;
   border: 1px solid var(--accent-coral);
   border-radius: 26px;
   padding: 2.25rem;
@@ -142,7 +142,7 @@
   overflow: hidden;
   border: 1px solid var(--border-subtle);
   border-radius: 18px;
-  background: linear-gradient(145deg, rgba(22, 32, 51, 0.96), rgba(13, 18, 31, 0.96));
+  background: #182033;
   transition: transform 0.2s ease, border-color 0.2s ease;
 }
 
@@ -167,17 +167,17 @@
 .feature-card-world::after { background: #fb7185; }
 
 .feature-card-coin {
-  background: linear-gradient(135deg, #34301f 0%, #1b2332 100%);
+  background: #34301f;
   border-color: rgba(250, 204, 21, 0.28);
 }
 
 .feature-card-path {
-  background: linear-gradient(135deg, #20384b 0%, #1c2440 100%);
+  background: #20384b;
   border-color: rgba(56, 189, 248, 0.28);
 }
 
 .feature-card-world {
-  background: linear-gradient(135deg, #3b2741 0%, #202438 100%);
+  background: #3b2741;
   border-color: rgba(244, 114, 182, 0.28);
 }
 
@@ -269,7 +269,7 @@
   width: 16.666%;
   height: 100%;
   border-radius: 9999px;
-  background: linear-gradient(90deg, #fb7185, #fb923c, #facc15, #34d399, #38bdf8, #a78bfa);
+  background: #facc15;
 }
 
 .level-number {
@@ -280,14 +280,14 @@
   height: 3.25rem;
   flex: 0 0 auto;
   border-radius: 16px;
-  background: linear-gradient(145deg, #fb7185, #fb923c);
+  background: #fb923c;
   color: #111827;
   font-size: 1.15rem;
   font-weight: 900;
 }
 
 .locked-number {
-  background: linear-gradient(145deg, #29334a, #25243b);
+  background: #29334a;
   color: #9ca3af;
 }
 
@@ -311,7 +311,7 @@
   overflow: visible;
   border: 1px solid rgba(244, 114, 182, 0.32);
   border-radius: 26px;
-  background: linear-gradient(135deg, #2b233f 0%, #1a303a 100%);
+  background: #2b233f;
 }
 
 .lesson-header-card p {
@@ -486,7 +486,7 @@
 .path-connector-active {
   width: 2px;
   height: 3.75rem;
-  background: linear-gradient(180deg, var(--accent-coin), var(--accent-crypto));
+  background: #facc15;
 }
 
 @media (max-width: 700px) {

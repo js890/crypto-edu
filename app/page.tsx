@@ -8,7 +8,7 @@ export default function TitleScreen() {
           <div className="hero-kicker mx-auto">
             Your learning adventure starts here
           </div>
-          <h1 className="hero-title text-5xl sm:text-7xl lg:text-8xl font-black tracking-tight leading-[1.05] bg-gradient-to-r from-[#fde047] via-[#fb7185] to-[#38bdf8] bg-clip-text text-transparent">
+          <h1 className="hero-title text-5xl sm:text-7xl lg:text-8xl font-black tracking-tight leading-[1.05] text-[#fde047]">
             Crypto and Technological Friends
           </h1>
 
