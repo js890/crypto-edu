@@ -123,37 +123,52 @@ export default function LevelOnePage() {
   };
 
   return (
-    <main className="page-shell px-6 pt-14 pb-32">
-      <div className="content-narrow space-y-16">
-        <div className="space-y-6">
-          <div className="flex flex-wrap items-center gap-4">
-            <span className="text-sm font-extrabold uppercase tracking-wider text-[#facc15]">
-              Level 01
-            </span>
-            <span className="track-badge-crypto">Crypto</span>
+    <main className="page-shell px-6 pt-8 sm:pt-12 pb-32">
+      <div className="content-narrow space-y-12 sm:space-y-16">
+        <nav className="nav-shell flex items-center justify-between gap-4 px-5 py-3">
+          <Link href="/levels" className="text-sm font-bold text-[#a1a9b8] hover:text-[#f3f4f6]">
+            &larr; All Levels
+          </Link>
+          <span className="text-sm font-black text-[#facc15]">Level 01</span>
+        </nav>
+
+        <div className="lesson-header-card p-7 sm:p-10 space-y-6">
+          <div className="flex flex-wrap items-center gap-4 relative z-[1]">
+            <span className="level-number">01</span>
+            <span className="track-badge-crypto">Crypto Fundamentals</span>
           </div>
 
-          <h1 className="text-4xl sm:text-6xl font-black leading-[1.2]">
-            The Basics
-          </h1>
-
-          <p className="text-base sm:text-lg leading-[2.05]">
-            A clear starting point covering what{" "}
-            <strong className="text-[#facc15] font-bold">cryptocurrency</strong>{" "}
-            is, how a{" "}
-            <strong className="text-[#34d399] font-bold">
-              decentralized ledger
-            </strong>{" "}
-            works, and how{" "}
-            <strong className="text-[#9ca3af] font-bold">mining</strong> keeps
-            things moving.
-          </p>
+          <div className="space-y-4 relative z-[1]">
+            <h1 className="text-4xl sm:text-6xl font-black leading-[1.12]">
+              Welcome to the Network
+            </h1>
+            <p className="text-base sm:text-lg leading-[1.9] max-w-2xl">
+              Learn what <strong className="text-[#facc15]">cryptocurrency</strong> is,
+              how a <strong className="text-[#34d399]">shared ledger</strong> stays in sync,
+              and how <strong className="text-[#38bdf8]">miners</strong> keep the chain moving.
+            </p>
+          </div>
         </div>
 
         <div className="surface-panel p-8 sm:p-11 space-y-8">
           <h2 className="text-2xl sm:text-3xl font-extrabold leading-snug">
             Introduction
           </h2>
+
+          <div className="concept-grid">
+            <div className="concept-card">
+              <strong className="text-[#facc15]">Digital money</strong>
+              <p>Uses cryptography and network rules instead of a physical bill or central vault.</p>
+            </div>
+            <div className="concept-card">
+              <strong className="text-[#34d399]">Shared ledger</strong>
+              <p>Independent computers compare transaction histories and agree on one account of events.</p>
+            </div>
+            <div className="concept-card">
+              <strong className="text-[#38bdf8]">Mining</strong>
+              <p>Competes to validate transactions and link new blocks to the chain securely.</p>
+            </div>
+          </div>
 
           <p className="text-base leading-[2.1]">
             <strong className="text-[#facc15] font-bold">

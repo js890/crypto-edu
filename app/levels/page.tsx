@@ -2,9 +2,9 @@ import Link from "next/link";
 
 export default function LevelsPage() {
   return (
-    <main className="page-shell px-6 pt-14 pb-32">
-      <div className="content-wide space-y-16">
-        <nav className="flex items-center justify-between border-b border-[#1f2937] pb-7">
+    <main className="page-shell px-6 pt-8 sm:pt-12 pb-32">
+      <div className="content-wide space-y-12 sm:space-y-16">
+        <nav className="nav-shell flex items-center justify-between gap-4 px-5 py-3 sm:px-6">
           <Link
             href="/"
             className="text-sm sm:text-base font-bold text-[#a1a9b8] hover:text-[#f3f4f6] transition-colors"
@@ -12,29 +12,35 @@ export default function LevelsPage() {
             &larr; Back to Title
           </Link>
 
-          <span className="text-sm sm:text-base font-bold text-[#a1a9b8]">
-            Progress: 0 of 6 Levels
-          </span>
+          <div className="flex items-center gap-3">
+            <span className="hidden sm:inline text-sm font-bold text-[#a1a9b8]">Journey progress</span>
+            <span className="text-sm sm:text-base font-black text-[#facc15]">0 / 6</span>
+          </div>
         </nav>
 
-        <div className="text-center space-y-5 max-w-2xl mx-auto">
-          <h1 className="text-4xl sm:text-6xl font-black leading-[1.2]">
-            Level Path
+        <div className="text-center space-y-6 max-w-2xl mx-auto">
+          <div className="hero-kicker mx-auto">
+            <span className="hero-kicker-dot" />
+            Choose your next challenge
+          </div>
+          <h1 className="text-5xl sm:text-7xl font-black leading-[1.08]">
+            Your Learning Map
           </h1>
-          <p className="text-base sm:text-lg leading-[2]">
-            Start with <strong className="text-[#facc15] font-extrabold">Crypto</strong>{" "}
-            to see the big picture, then dive into{" "}
-            <strong className="text-[#38bdf8] font-extrabold">Technology</strong>{" "}
-            and <strong className="text-[#34d399] font-extrabold">Finance</strong>.
+          <p className="text-base sm:text-lg leading-[1.9]">
+            Begin with <strong className="text-[#facc15]">Crypto</strong>,
+            expand into <strong className="text-[#38bdf8]">Technology</strong>,
+            and put it all to work with <strong className="text-[#34d399]">Finance</strong>.
           </p>
+          <div className="progress-track max-w-md mx-auto"><div className="progress-fill" /></div>
         </div>
 
         <div className="flex flex-col items-center">
           <div className="surface-panel-active w-full max-w-lg p-8 sm:p-9 space-y-7">
             <div className="flex items-center justify-between gap-4">
-              <span className="text-xs font-extrabold uppercase tracking-wider text-[#facc15]">
-                Level 01 &bull; Available
-              </span>
+              <div className="flex items-center gap-3">
+                <span className="level-number">01</span>
+                <span className="text-xs font-extrabold uppercase tracking-wider text-[#facc15]">Available</span>
+              </div>
               <span className="track-badge-crypto">Crypto</span>
             </div>
 
@@ -65,9 +71,10 @@ export default function LevelsPage() {
 
           <div className="surface-panel-locked w-full max-w-lg p-8 space-y-4">
             <div className="flex items-center justify-between gap-4">
-              <span className="text-xs font-extrabold uppercase tracking-wider text-[#a1a9b8]">
-                Level 02 &bull; Locked
-              </span>
+              <div className="flex items-center gap-3">
+                <span className="level-number locked-number">02</span>
+                <span className="text-xs font-extrabold uppercase tracking-wider text-[#a1a9b8]">Locked</span>
+              </div>
               <span className="track-badge-finance">Finance</span>
             </div>
 
@@ -87,9 +94,10 @@ export default function LevelsPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full">
             <div className="surface-panel-locked p-7 space-y-4">
               <div className="flex items-center justify-between gap-2">
-                <span className="text-xs font-extrabold uppercase tracking-wider text-[#a1a9b8]">
-                  Level 03 &bull; Locked
-                </span>
+                <div className="flex items-center gap-2.5">
+                  <span className="level-number locked-number !w-11 !h-11">03</span>
+                  <span className="text-xs font-extrabold uppercase tracking-wider text-[#a1a9b8]">Locked</span>
+                </div>
                 <span className="track-badge-technology">Technology</span>
               </div>
               <h2 className="text-lg font-bold leading-snug">Hash Lab</h2>
@@ -101,9 +109,10 @@ export default function LevelsPage() {
 
             <div className="surface-panel-locked p-7 space-y-4">
               <div className="flex items-center justify-between gap-2">
-                <span className="text-xs font-extrabold uppercase tracking-wider text-[#a1a9b8]">
-                  Level 04 &bull; Locked
-                </span>
+                <div className="flex items-center gap-2.5">
+                  <span className="level-number locked-number !w-11 !h-11">04</span>
+                  <span className="text-xs font-extrabold uppercase tracking-wider text-[#a1a9b8]">Locked</span>
+                </div>
                 <span className="track-badge-crypto">Crypto</span>
               </div>
               <h2 className="text-lg font-bold leading-snug">Gas and Fees</h2>
@@ -114,9 +123,10 @@ export default function LevelsPage() {
 
             <div className="surface-panel-locked p-7 space-y-4">
               <div className="flex items-center justify-between gap-2">
-                <span className="text-xs font-extrabold uppercase tracking-wider text-[#a1a9b8]">
-                  Level 05 &bull; Locked
-                </span>
+                <div className="flex items-center gap-2.5">
+                  <span className="level-number locked-number !w-11 !h-11">05</span>
+                  <span className="text-xs font-extrabold uppercase tracking-wider text-[#a1a9b8]">Locked</span>
+                </div>
                 <span className="track-badge-finance">Finance</span>
               </div>
               <h2 className="text-lg font-bold leading-snug">
@@ -133,9 +143,10 @@ export default function LevelsPage() {
 
           <div className="surface-panel-locked w-full max-w-lg p-8 space-y-4">
             <div className="flex items-center justify-between gap-4">
-              <span className="text-xs font-extrabold uppercase tracking-wider text-[#a1a9b8]">
-                Level 06 &bull; Requires Levels 03, 04 and 05
-              </span>
+              <div className="flex items-center gap-3">
+                <span className="level-number locked-number">06</span>
+                <span className="text-xs font-extrabold uppercase tracking-wider text-[#a1a9b8]">Finale</span>
+              </div>
               <span className="track-badge-crypto">Crypto</span>
             </div>
 

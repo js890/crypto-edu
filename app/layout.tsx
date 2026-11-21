@@ -9,9 +9,9 @@ const nunito = Nunito({
 });
 
 export const metadata: Metadata = {
-  title: "Crypto and Technological Friends",
+  title: "Crypto & Tech — Made Explorable",
   description:
-    "An interactive game with two halves—Crypto and Technology—helping high schoolers learn finance and modern tech concepts.",
+    "An interactive learning adventure exploring cryptocurrency, finance, and modern technology.",
 };
 
 export default function RootLayout({
