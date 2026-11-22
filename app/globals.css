@@ -561,12 +561,22 @@
   gap: 0.65rem;
   max-width: 32rem;
   margin: 0 auto;
-  padding: 1rem 1.15rem;
-  border: 1px solid rgba(129, 140, 248, 0.28);
-  border-radius: 16px;
-  background: rgba(37, 44, 76, 0.72);
+  padding: 0.9rem 1rem;
+  border-left: 3px solid var(--accent-coin);
+  border-radius: 0 12px 12px 0;
+  background: rgba(37, 44, 76, 0.46);
   color: var(--text-secondary);
   text-align: left;
+}
+
+.map-progress-next {
+  color: var(--text-secondary);
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
+.map-progress-next strong {
+  color: var(--text-primary);
 }
 
 .map-chapter {

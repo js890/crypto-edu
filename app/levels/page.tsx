@@ -233,6 +233,9 @@ export default function LevelsPage() {
   );
   const completedCount = completedLevels.size;
   const progress = `${(completedCount / allLevels.length) * 100}%`;
+  const nextLevel = allLevels.find(
+    (level) => !completedLevels.has(level.number) && levelIsAvailable(level, completedLevels)
+  );
 
   return (
     <main className="page-shell px-6 pt-8 sm:pt-12 pb-32">
@@ -266,12 +269,25 @@ export default function LevelsPage() {
           </p>
           <div className="map-progress-summary">
             <div className="flex items-center justify-between gap-4 text-sm font-bold">
-              <span>20-level journey</span>
-              <span className="text-[#facc15]">{completedCount} completed</span>
+              <span>Journey progress</span>
+              <span className="text-[#facc15]">{completedCount} / {allLevels.length} levels</span>
             </div>
             <div className="progress-track">
-              <div className="progress-fill" style={{ width: progress }} />
+              <div
+                className="progress-fill"
+                style={{ width: progress }}
+                role="progressbar"
+                aria-label="Learning journey progress"
+                aria-valuemin={0}
+                aria-valuemax={allLevels.length}
+                aria-valuenow={completedCount}
+              />
             </div>
+            <p className="map-progress-next">
+              {nextLevel
+                ? <>Next up: <strong>Level {String(nextLevel.number).padStart(2, "0")} · {nextLevel.title}</strong></>
+                : "Journey complete — every level finished."}
+            </p>
           </div>
         </header>
 
