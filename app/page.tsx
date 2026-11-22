@@ -15,7 +15,8 @@ export default function TitleScreen() {
           <p className="text-lg sm:text-xl leading-[1.9] max-w-2xl mx-auto">
             Discover how <strong className="text-[#34d399]">money moves</strong>,
             how <strong className="text-[#38bdf8]">digital networks work</strong>,
-            and why <strong className="text-[#c4b5fd]">cryptography matters</strong>.
+            and why <strong className="text-[#a78bfa]">cryptography matters</strong>{" "}
+            — made for high school students.
           </p>
         </div>
 

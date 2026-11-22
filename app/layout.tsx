@@ -11,7 +11,7 @@ const fredoka = Fredoka({
 export const metadata: Metadata = {
   title: "Crypto and Technological Friends",
   description:
-    "An interactive learning adventure about cryptocurrency, finance, and modern technology.",
+    "A high school-friendly learning adventure about cryptocurrency, finance, and modern technology.",
 };
 
 export default function RootLayout({
