@@ -233,7 +233,7 @@ export default function LevelsPage() {
   );
   const completedCount = completedLevels.size;
   const progress = `${(completedCount / allLevels.length) * 100}%`;
-  const nextLevel = allLevels.find(
+  const availableLevels = allLevels.filter(
     (level) => !completedLevels.has(level.number) && levelIsAvailable(level, completedLevels)
   );
 
@@ -283,11 +283,31 @@ export default function LevelsPage() {
                 aria-valuenow={completedCount}
               />
             </div>
-            <p className="map-progress-next">
-              {nextLevel
-                ? <>Next up: <strong>Level {String(nextLevel.number).padStart(2, "0")} · {nextLevel.title}</strong></>
-                : "Journey complete — every level finished."}
-            </p>
+            {completedCount === allLevels.length ? (
+              <p className="map-progress-next">
+                <span className="map-progress-next-label">Next up</span>
+                <strong>Apply your newfound knowledge to the real world!</strong>
+              </p>
+            ) : availableLevels.length > 0 ? (
+              <div className="map-progress-next">
+                <span className="map-progress-next-label">
+                  Available now{availableLevels.length > 1 ? ` (${availableLevels.length})` : ""}
+                </span>
+                <div className="map-progress-links">
+                  {availableLevels.map((level) => (
+                    <Link
+                      key={level.number}
+                      href={`/levels/level-${String(level.number).padStart(2, "0")}`}
+                      className="map-progress-link"
+                    >
+                      {String(level.number).padStart(2, "0")} · {level.title}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            ) : (
+              <p className="map-progress-next">Complete an available level to unlock the next step.</p>
+            )}
           </div>
         </header>
 
