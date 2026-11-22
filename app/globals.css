@@ -524,6 +524,184 @@
   background: #facc15;
 }
 
+.learning-map {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.map-legend {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem 1.5rem;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  font-weight: 800;
+}
+
+.map-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.map-legend-dot {
+  width: 0.65rem;
+  height: 0.65rem;
+  border-radius: 9999px;
+}
+
+.map-legend-dot-technology { background: var(--accent-tech); }
+.map-legend-dot-finance { background: var(--accent-finance); }
+.map-legend-dot-crypto { background: var(--accent-crypto); }
+
+.map-progress-summary {
+  display: grid;
+  gap: 0.65rem;
+  max-width: 32rem;
+  margin: 0 auto;
+  padding: 1rem 1.15rem;
+  border: 1px solid rgba(129, 140, 248, 0.28);
+  border-radius: 16px;
+  background: rgba(37, 44, 76, 0.72);
+  color: var(--text-secondary);
+  text-align: left;
+}
+
+.map-chapter {
+  position: relative;
+  display: grid;
+  gap: 1.25rem;
+  padding: 1.25rem;
+  border: 1px solid rgba(129, 140, 248, 0.22);
+  border-radius: 24px;
+  background: rgba(21, 29, 46, 0.72);
+}
+
+.map-chapter::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -2.5rem;
+  width: 2px;
+  height: 2.5rem;
+  background: var(--border-strong);
+}
+
+.map-chapter:last-child::after {
+  display: none;
+}
+
+.map-chapter-heading {
+  display: grid;
+  gap: 0.35rem;
+  padding: 0.75rem;
+}
+
+.map-chapter-number {
+  color: #c4c9ff;
+  font-size: 0.75rem;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.map-chapter-note {
+  max-width: 48rem;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+.map-chapter-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.map-chapter-grid-branch {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.map-path-lane {
+  position: relative;
+  display: grid;
+  align-content: start;
+  gap: 0.9rem;
+  min-width: 0;
+  padding: 0.8rem;
+  border: 1px dashed rgba(129, 140, 248, 0.28);
+  border-radius: 18px;
+}
+
+.map-path-label {
+  color: #c4c9ff;
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.map-level-card {
+  display: grid;
+  gap: 1rem;
+  min-width: 0;
+  padding: 1.15rem;
+  border: 1px solid #30384f;
+  border-radius: 18px;
+  background: #151d2e;
+  opacity: 0.76;
+  transition: border-color 0.18s ease, opacity 0.18s ease, transform 0.18s ease;
+}
+
+.map-level-card-active {
+  border-color: rgba(129, 140, 248, 0.42);
+  background: #202944;
+  opacity: 1;
+}
+
+.map-level-card:hover {
+  border-color: var(--border-strong);
+  transform: translateY(-2px);
+}
+
+.map-level-card h3 {
+  overflow-wrap: anywhere;
+}
+
+.map-level-status {
+  color: var(--text-muted);
+  font-size: 0.68rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.map-level-status-available { color: #facc15; }
+.map-level-status-completed { color: var(--accent-teal); }
+
+.map-level-prerequisite {
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  line-height: 1.6;
+}
+
+.map-level-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(129, 140, 248, 0.2);
+  color: #fde047;
+  font-size: 0.85rem;
+  font-weight: 900;
+}
+
+.map-level-link:hover {
+  color: #fff3a3;
+}
+
 @media (max-width: 700px) {
   .concept-grid {
     grid-template-columns: 1fr;
@@ -535,5 +713,13 @@
 
   .nav-shell {
     border-radius: 18px;
+  }
+
+  .map-chapter {
+    padding: 0.75rem;
+  }
+
+  .map-chapter-grid-branch {
+    grid-template-columns: 1fr;
   }
 }

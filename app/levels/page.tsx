@@ -1,29 +1,238 @@
 "use client";
 
-import { useSyncExternalStore } from "react";
 import Link from "next/link";
+import { useSyncExternalStore } from "react";
 
-const LEVEL_ONE_COMPLETION_KEY = "crypto-edu:level-01-completed";
+type Category = "Technology" | "Finance" | "Crypto";
 
-function subscribeToCompletion(callback: () => void) {
+type Level = {
+  number: number;
+  title: string;
+  category: Category;
+  prerequisites: number[];
+};
+
+type Chapter = {
+  number: number;
+  title: string;
+  levels: Level[];
+};
+
+const COMPLETION_PREFIX = "crypto-edu:level-";
+
+const chapters: Chapter[] = [
+  {
+    number: 1,
+    title: "Understanding Money and Blockchain",
+    levels: [
+      { number: 1, title: "What Is Money?", category: "Finance", prerequisites: [] },
+      { number: 2, title: "The Digital Ledger", category: "Technology", prerequisites: [1] },
+      { number: 3, title: "Enter Cryptocurrency", category: "Crypto", prerequisites: [2] },
+      { number: 4, title: "Blocks, Chains & Consensus", category: "Crypto", prerequisites: [3] },
+    ],
+  },
+  {
+    number: 2,
+    title: "The Technology Behind Crypto",
+    levels: [
+      { number: 5, title: "Hash Lab: Digital Fingerprints", category: "Technology", prerequisites: [4] },
+      { number: 6, title: "Public & Private Keys", category: "Technology", prerequisites: [5] },
+      { number: 7, title: "Wallets & Transactions", category: "Crypto", prerequisites: [6] },
+      { number: 8, title: "Mining vs. Staking", category: "Crypto", prerequisites: [5] },
+      { number: 9, title: "Gas, Fees & Network Speed", category: "Crypto", prerequisites: [7, 8] },
+    ],
+  },
+  {
+    number: 3,
+    title: "The Financial Side of Crypto",
+    levels: [
+      { number: 10, title: "Supply, Demand & Scarcity", category: "Finance", prerequisites: [4] },
+      { number: 11, title: "Market Cycles & Volatility", category: "Finance", prerequisites: [10] },
+      { number: 12, title: "Risk, Reward & Diversification", category: "Finance", prerequisites: [11] },
+      { number: 13, title: "Inflation, Interest & Stablecoins", category: "Crypto", prerequisites: [10] },
+      { number: 14, title: "Tokens, Coins & Tokenomics", category: "Crypto", prerequisites: [10, 11, 12, 13] },
+    ],
+  },
+  {
+    number: 4,
+    title: "The Crypto Ecosystem",
+    levels: [
+      { number: 15, title: "Smart Contracts", category: "Technology", prerequisites: [9] },
+      { number: 16, title: "DeFi: Finance Without Traditional Intermediaries", category: "Crypto", prerequisites: [12, 13, 14, 15] },
+      { number: 17, title: "NFTs, Digital Ownership & Governance", category: "Crypto", prerequisites: [15] },
+      { number: 18, title: "Security, Scams & Self-Custody", category: "Technology", prerequisites: [6, 7] },
+      { number: 19, title: "Regulation, Sustainability & Real-World Use", category: "Crypto", prerequisites: [14, 15, 16, 17, 18] },
+      { number: 20, title: "The Mainnet Challenge", category: "Crypto", prerequisites: [16, 17, 18, 19] },
+    ],
+  },
+];
+
+const allLevels = chapters.flatMap((chapter) => chapter.levels);
+const EMPTY_COMPLETED_LEVELS = new Set<number>();
+let cachedProgressSignature = "";
+let cachedCompletedLevels = new Set<number>();
+
+function subscribeToProgress(callback: () => void) {
   window.addEventListener("storage", callback);
-  return () => window.removeEventListener("storage", callback);
+  window.addEventListener("crypto-edu:progress", callback);
+  return () => {
+    window.removeEventListener("storage", callback);
+    window.removeEventListener("crypto-edu:progress", callback);
+  };
 }
 
-function getLevelOneCompletion() {
-  return window.localStorage.getItem(LEVEL_ONE_COMPLETION_KEY) === "true";
+function getCompletedLevels() {
+  const signature = allLevels
+    .map((level) => {
+      const key = `${COMPLETION_PREFIX}${String(level.number).padStart(2, "0")}-completed`;
+      return window.localStorage.getItem(key) === "true" ? "1" : "0";
+    })
+    .join("");
+
+  if (signature !== cachedProgressSignature) {
+    cachedProgressSignature = signature;
+    cachedCompletedLevels = new Set(
+      allLevels
+        .filter((level, index) => signature[index] === "1")
+        .map((level) => level.number)
+    );
+  }
+
+  return cachedCompletedLevels;
 }
 
-function getServerLevelOneCompletion() {
-  return false;
+function getServerCompletedLevels() {
+  return EMPTY_COMPLETED_LEVELS;
+}
+
+function formatPrerequisites(prerequisites: number[]) {
+  if (prerequisites.length === 0) {
+    return "No prerequisites";
+  }
+
+  const formatted = prerequisites.map((number) => String(number).padStart(2, "0"));
+  const isContiguous = prerequisites.every(
+    (number, index) => index === 0 || number === prerequisites[index - 1] + 1
+  );
+  const requirement = isContiguous
+    ? `${formatted[0]}–${formatted[formatted.length - 1]}`
+    : formatted.join(", ");
+
+  return prerequisites.length === 1
+    ? `Requires Level ${formatted[0]}`
+    : `Requires Levels ${requirement}`;
+}
+
+function categoryClass(category: Category) {
+  return `track-badge-${category.toLowerCase()}`;
+}
+
+function levelIsAvailable(level: Level, completedLevels: Set<number>) {
+  return level.prerequisites.every((prerequisite) => completedLevels.has(prerequisite));
+}
+
+function LevelCard({
+  level,
+  completedLevels,
+}: {
+  level: Level;
+  completedLevels: Set<number>;
+}) {
+  const completed = completedLevels.has(level.number);
+  const available = !completed && levelIsAvailable(level, completedLevels);
+  const status = completed ? "Completed" : available ? "Available" : "Locked";
+
+  return (
+    <article className={`map-level-card ${available || completed ? "map-level-card-active" : ""}`}>
+      <div className="flex items-start justify-between gap-3">
+        <div className="flex min-w-0 items-center gap-3">
+          <span className={`level-number ${completed || available ? "" : "locked-number"}`}>
+            {String(level.number).padStart(2, "0")}
+          </span>
+          <span className={`map-level-status map-level-status-${status.toLowerCase()}`}>
+            {status}
+          </span>
+        </div>
+        <span className={categoryClass(level.category)}>{level.category}</span>
+      </div>
+
+      <h3 className="text-xl font-extrabold leading-snug">{level.title}</h3>
+      <p className="map-level-prerequisite">{formatPrerequisites(level.prerequisites)}</p>
+
+      {available || completed ? (
+        <Link
+          href={`/levels/level-${String(level.number).padStart(2, "0")}`}
+          className="map-level-link"
+        >
+          {completed ? "Review level" : "Start level"} <span aria-hidden="true">→</span>
+        </Link>
+      ) : null}
+    </article>
+  );
+}
+
+function ChapterSection({
+  chapter,
+  completedLevels,
+}: {
+  chapter: Chapter;
+  completedLevels: Set<number>;
+}) {
+  const isBranch = chapter.number === 2 || chapter.number === 3;
+  const columns = isBranch
+    ? chapter.number === 2
+      ? [chapter.levels.slice(0, 2), chapter.levels.slice(2)]
+      : [chapter.levels.slice(0, 3), chapter.levels.slice(3)]
+    : [chapter.levels];
+
+  return (
+    <section className={`map-chapter map-chapter-${chapter.number}`} aria-labelledby={`chapter-${chapter.number}`}>
+      <div className="map-chapter-heading">
+        <span className="map-chapter-number">Chapter {chapter.number}</span>
+        <h2 id={`chapter-${chapter.number}`} className="text-2xl sm:text-3xl font-black">
+          {chapter.title}
+        </h2>
+        {isBranch ? (
+          <p className="map-chapter-note">
+            {chapter.number === 2
+              ? "Build the technical foundations, then apply them across the network."
+              : "Follow the finance path while crypto concepts connect the ideas."}
+          </p>
+        ) : null}
+      </div>
+
+      <div className={`map-chapter-grid ${isBranch ? "map-chapter-grid-branch" : ""}`}>
+        {columns.map((column, index) => (
+          <div className="map-path-lane" key={`${chapter.number}-${index}`}>
+            {isBranch ? (
+              <div className="map-path-label">
+                {chapter.number === 2
+                  ? index === 0
+                    ? "Technology path"
+                    : "Crypto application path"
+                  : index === 0
+                    ? "Finance path"
+                    : "Crypto application path"}
+              </div>
+            ) : null}
+            {column.map((level) => (
+              <LevelCard key={level.number} level={level} completedLevels={completedLevels} />
+            ))}
+          </div>
+        ))}
+      </div>
+    </section>
+  );
 }
 
 export default function LevelsPage() {
-  const levelOneCompleted = useSyncExternalStore(
-    subscribeToCompletion,
-    getLevelOneCompletion,
-    getServerLevelOneCompletion
+  const completedLevels = useSyncExternalStore(
+    subscribeToProgress,
+    getCompletedLevels,
+    getServerCompletedLevels
   );
+  const completedCount = completedLevels.size;
+  const progress = `${(completedCount / allLevels.length) * 100}%`;
 
   return (
     <main className="page-shell px-6 pt-8 sm:pt-12 pb-32">
@@ -42,212 +251,40 @@ export default function LevelsPage() {
           <div className="flex items-center gap-3">
             <span className="hidden sm:inline text-sm font-bold text-[#a1a9b8]">Journey progress</span>
             <span className="text-sm sm:text-base font-black text-[#facc15]">
-              {levelOneCompleted ? "1" : "0"} / 6
+              {completedCount} / {allLevels.length}
             </span>
           </div>
         </nav>
 
-        <div className="text-center space-y-6 max-w-2xl mx-auto">
-          <div className="hero-kicker mx-auto">
-            Choose your next challenge
-          </div>
-          <h1 className="text-5xl sm:text-7xl font-black leading-[1.08]">
-            Your Learning Map
-          </h1>
+        <header className="text-center space-y-6 max-w-3xl mx-auto">
+          <div className="hero-kicker mx-auto">Choose your next challenge</div>
+          <h1 className="text-5xl sm:text-7xl font-black leading-[1.08]">Your Learning Map</h1>
           <p className="text-base sm:text-lg leading-[1.9]">
-            Learn Tech and Finance in order to implement them in{" "}
-            <strong className="text-[#facc15]">Crypto</strong>.
+            Learn <strong className="text-[#38bdf8]">Tech</strong> and{" "}
+            <strong className="text-[#34d399]">Finance</strong> in order to implement them in{" "}
+            <strong className="text-[#a78bfa]">Crypto</strong>.
           </p>
-          <div className="progress-track max-w-md mx-auto">
-            <div
-              className="progress-fill"
-              style={{ width: levelOneCompleted ? "16.666%" : "0%" }}
-            />
+          <div className="map-progress-summary">
+            <div className="flex items-center justify-between gap-4 text-sm font-bold">
+              <span>20-level journey</span>
+              <span className="text-[#facc15]">{completedCount} completed</span>
+            </div>
+            <div className="progress-track">
+              <div className="progress-fill" style={{ width: progress }} />
+            </div>
           </div>
+        </header>
+
+        <div className="map-legend" aria-label="Learning path legend">
+          <span><i className="map-legend-dot map-legend-dot-technology" />Technology</span>
+          <span><i className="map-legend-dot map-legend-dot-finance" />Finance</span>
+          <span><i className="map-legend-dot map-legend-dot-crypto" />Crypto</span>
         </div>
 
-        <div className="flex flex-col items-center">
-          <div className="surface-panel-active w-full max-w-lg p-8 sm:p-9 space-y-7">
-            <div className="flex items-center justify-between gap-4">
-              <div className="flex items-center gap-3">
-                <span className="level-number">01</span>
-                <span className="text-xs font-extrabold uppercase tracking-wider text-[#facc15]">
-                  {levelOneCompleted ? "Completed" : "Available"}
-                </span>
-              </div>
-              <span className="track-badge-crypto">Crypto</span>
-            </div>
-
-            <div className="space-y-4">
-              <h2 className="text-2xl sm:text-3xl font-extrabold leading-snug">
-                The Basics
-              </h2>
-              <p className="text-base leading-[2]">
-                Learn what <strong className="text-[#facc15] font-bold">cryptocurrency</strong>{" "}
-                is, how a shared ledger works across computers, and how{" "}
-                <strong className="text-[#9ca3af] font-bold">mining</strong>{" "}
-                fits into the picture.
-              </p>
-            </div>
-
-            <div className="pt-3">
-              <Link
-                href="/levels/level-01"
-                className="game-start-btn w-full py-4 px-8 text-lg sm:text-xl"
-              >
-                <span>{levelOneCompleted ? "Review Level 01" : "Play Level 01!"}</span>
-                <span className="action-arrow-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
-                </span>
-              </Link>
-            </div>
-          </div>
-
-          <div className="path-connector-active" />
-
-          {levelOneCompleted ? (
-            <div className="surface-panel-active w-full max-w-lg p-8 sm:p-9 space-y-6">
-              <div className="flex items-center justify-between gap-4">
-                <div className="flex items-center gap-3">
-                  <span className="level-number">02</span>
-                  <span className="text-xs font-extrabold uppercase tracking-wider text-[#34d399]">
-                    Available
-                  </span>
-                </div>
-                <span className="track-badge-finance">Finance</span>
-              </div>
-
-              <div className="space-y-3">
-                <h2 className="text-2xl font-extrabold leading-snug">
-                  First Trade: Supply and Volatility
-                </h2>
-                <p className="text-xs font-extrabold uppercase tracking-wide text-[#34d399]">
-                  Requires Level 01
-                </p>
-                <p className="text-sm sm:text-base leading-[2.1]">
-                  Manage a starter budget through a simulated market cycle and
-                  weigh risk against reward.
-                </p>
-              </div>
-
-              <Link
-                href="/levels/level-02"
-                className="game-start-btn w-full py-4 px-8 text-lg sm:text-xl"
-              >
-                <span>Begin Level 02</span>
-                <span className="action-arrow-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
-                </span>
-              </Link>
-            </div>
-          ) : (
-            <div className="surface-panel-locked w-full max-w-lg p-8 sm:p-9 space-y-4">
-              <div className="flex items-center justify-between gap-4">
-                <div className="flex items-center gap-3">
-                  <span className="level-number locked-number">02</span>
-                  <span className="text-xs font-extrabold uppercase tracking-wider text-[#a1a9b8]">Locked</span>
-                </div>
-                <span className="track-badge-finance">Finance</span>
-              </div>
-
-              <div className="space-y-3">
-                <h2 className="text-xl font-bold leading-snug">
-                  First Trade: Supply and Volatility
-                </h2>
-                <p className="text-xs font-extrabold uppercase tracking-wide text-[#34d399]">
-                  Requires Level 01
-                </p>
-                <p className="text-sm sm:text-base leading-[2.1]">
-                  Manage a starter budget through a simulated market cycle and
-                  weigh risk against reward.
-                </p>
-              </div>
-            </div>
-          )}
-
-          <div className="path-connector" />
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full">
-            <div className="surface-panel-locked p-7 space-y-4">
-              <div className="flex items-center justify-between gap-2">
-                <div className="flex items-center gap-2.5">
-                  <span className="level-number locked-number !w-11 !h-11">03</span>
-                  <span className="text-xs font-extrabold uppercase tracking-wider text-[#a1a9b8]">Locked</span>
-                </div>
-                <span className="track-badge-technology">Technology</span>
-              </div>
-              <h2 className="text-lg font-bold leading-snug">Hash Lab</h2>
-              <p className="text-xs font-extrabold uppercase tracking-wide text-[#38bdf8]">
-                Requires Level 02
-              </p>
-              <p className="text-sm leading-[2]">
-                Spot tampering and see how cryptographic hashes behave when
-                inputs change.
-              </p>
-            </div>
-
-            <div className="surface-panel-locked p-7 space-y-4">
-              <div className="flex items-center justify-between gap-2">
-                <div className="flex items-center gap-2.5">
-                  <span className="level-number locked-number !w-11 !h-11">04</span>
-                  <span className="text-xs font-extrabold uppercase tracking-wider text-[#a1a9b8]">Locked</span>
-                </div>
-                <span className="track-badge-crypto">Crypto</span>
-              </div>
-              <h2 className="text-lg font-bold leading-snug">Gas and Fees</h2>
-              <p className="text-xs font-extrabold uppercase tracking-wide text-[#a78bfa]">
-                Requires Level 02
-              </p>
-              <p className="text-sm leading-[2]">
-                Balance confirmation speed and network costs when sending value.
-              </p>
-            </div>
-
-            <div className="surface-panel-locked p-7 space-y-4">
-              <div className="flex items-center justify-between gap-2">
-                <div className="flex items-center gap-2.5">
-                  <span className="level-number locked-number !w-11 !h-11">05</span>
-                  <span className="text-xs font-extrabold uppercase tracking-wider text-[#a1a9b8]">Locked</span>
-                </div>
-                <span className="track-badge-finance">Finance</span>
-              </div>
-              <h2 className="text-lg font-bold leading-snug">
-                Risk and Diversification
-              </h2>
-              <p className="text-xs font-extrabold uppercase tracking-wide text-[#34d399]">
-                Requires Level 02
-              </p>
-              <p className="text-sm leading-[2]">
-                Handle price swings across multiple assets without putting
-                everything in one place.
-              </p>
-            </div>
-          </div>
-
-          <div className="path-connector" />
-
-          <div className="surface-panel-locked w-full max-w-lg p-8 space-y-4">
-            <div className="flex items-center justify-between gap-4">
-              <div className="flex items-center gap-3">
-                <span className="level-number locked-number">06</span>
-                <span className="text-xs font-extrabold uppercase tracking-wider text-[#a1a9b8]">Finale</span>
-              </div>
-              <span className="track-badge-crypto">Crypto</span>
-            </div>
-
-            <div className="space-y-3">
-              <h2 className="text-xl font-bold leading-snug">
-                Mainnet Launch
-              </h2>
-              <p className="text-xs font-extrabold uppercase tracking-wide text-[#a78bfa]">
-                Requires Levels 03-05
-              </p>
-              <p className="text-sm sm:text-base leading-[2]">
-                Bring key security, fee trade-offs, and portfolio risk together
-                in one final round.
-              </p>
-            </div>
-          </div>
+        <div className="learning-map">
+          {chapters.map((chapter) => (
+            <ChapterSection key={chapter.number} chapter={chapter} completedLevels={completedLevels} />
+          ))}
         </div>
       </div>
     </main>
