@@ -2,9 +2,20 @@ import Link from "next/link";
 
 type Category = "Technology" | "Finance" | "Crypto";
 
-const levelDetails: Record<number, { title: string; category: Category }> = {
-  2: { title: "The Digital Ledger", category: "Technology" },
-  3: { title: "Enter Cryptocurrency", category: "Crypto" },
+const levelDetails: Record<
+  number,
+  { title: string; category: Category; prerequisite?: string }
+> = {
+  2: {
+    title: "What Is Money?",
+    category: "Finance",
+    prerequisite: "Requires Level 01",
+  },
+  3: {
+    title: "The Digital Ledger",
+    category: "Technology",
+    prerequisite: "Requires Level 02",
+  },
   4: { title: "Blocks, Chains & Consensus", category: "Crypto" },
   5: { title: "Hash Lab: Digital Fingerprints", category: "Technology" },
   6: { title: "Public & Private Keys", category: "Technology" },
@@ -53,6 +64,19 @@ export default function LevelBase({ number }: { number: number }) {
           </div>
           <div className="space-y-4 relative z-[1]">
             <h1 className="text-4xl sm:text-6xl font-black leading-[1.12]">{details.title}</h1>
+            {details.prerequisite ? (
+              <p
+                className={`text-xs font-extrabold uppercase tracking-wide ${
+                  details.category === "Technology"
+                    ? "text-[#38bdf8]"
+                    : details.category === "Finance"
+                      ? "text-[#34d399]"
+                      : "text-[#a78bfa]"
+                }`}
+              >
+                {details.prerequisite}
+              </p>
+            ) : null}
             <p className="text-base sm:text-lg leading-[1.95] max-w-2xl">
               This level is under construction. Return soon for the lesson and activities.
             </p>

@@ -25,9 +25,9 @@ const chapters: Chapter[] = [
     number: 1,
     title: "Understanding Money and Blockchain",
     levels: [
-      { number: 1, title: "What Is Money?", category: "Finance", prerequisites: [] },
-      { number: 2, title: "The Digital Ledger", category: "Technology", prerequisites: [1] },
-      { number: 3, title: "Enter Cryptocurrency", category: "Crypto", prerequisites: [2] },
+      { number: 1, title: "Welcome to the Network!", category: "Crypto", prerequisites: [] },
+      { number: 2, title: "What Is Money?", category: "Finance", prerequisites: [1] },
+      { number: 3, title: "The Digital Ledger", category: "Technology", prerequisites: [2] },
       { number: 4, title: "Blocks, Chains & Consensus", category: "Crypto", prerequisites: [3] },
     ],
   },
@@ -300,7 +300,12 @@ export default function LevelsPage() {
                       href={`/levels/level-${String(level.number).padStart(2, "0")}`}
                       className="map-progress-link"
                     >
-                      {String(level.number).padStart(2, "0")} · {level.title}
+                      <span>{String(level.number).padStart(2, "0")} · {level.title}</span>
+                      <span
+                        className={`map-progress-category map-progress-category-${level.category.toLowerCase()}`}
+                      >
+                        {level.category}
+                      </span>
                     </Link>
                   ))}
                 </div>

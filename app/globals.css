@@ -596,6 +596,9 @@
 }
 
 .map-progress-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
   max-width: 100%;
   padding: 0.38rem 0.65rem;
   border: 1px solid rgba(250, 204, 21, 0.24);
@@ -611,6 +614,31 @@
 .map-progress-link:hover {
   border-color: rgba(250, 204, 21, 0.55);
   background: rgba(250, 204, 21, 0.12);
+}
+
+.map-progress-category {
+  flex: 0 0 auto;
+  padding: 0.12rem 0.38rem;
+  border-radius: 9999px;
+  font-size: 0.62rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.map-progress-category-technology {
+  color: var(--accent-tech);
+  background: #123248;
+}
+
+.map-progress-category-finance {
+  color: var(--accent-finance);
+  background: #12372f;
+}
+
+.map-progress-category-crypto {
+  color: var(--accent-crypto);
+  background: #30204a;
 }
 
 .map-chapter {

@@ -143,12 +143,12 @@ export default function LevelOnePage() {
         <div className="lesson-header-card p-7 sm:p-10 space-y-6">
           <div className="flex flex-wrap items-center gap-4 relative z-[1]">
             <span className="level-number">01</span>
-            <span className="track-badge-crypto">Crypto Fundamentals</span>
+            <span className="track-badge-crypto">Crypto</span>
           </div>
 
           <div className="space-y-4 relative z-[1]">
             <h1 className="text-4xl sm:text-6xl font-black leading-[1.12]">
-              Welcome to the Network
+              Welcome to the Network!
             </h1>
             <p className="text-base sm:text-lg leading-[2.25] max-w-2xl py-2">
               Learn what <strong className="text-[#facc15]">cryptocurrency</strong> is,
