@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useSyncExternalStore } from "react";
+import { useState, useSyncExternalStore } from "react";
 
 type Category = "Technology" | "Finance" | "Crypto";
 
@@ -72,6 +72,10 @@ const EMPTY_COMPLETED_LEVELS = new Set<number>();
 let cachedProgressSignature = "";
 let cachedCompletedLevels = new Set<number>();
 
+function completionKey(levelNumber: number) {
+  return `${COMPLETION_PREFIX}${String(levelNumber).padStart(2, "0")}-completed`;
+}
+
 function subscribeToProgress(callback: () => void) {
   window.addEventListener("storage", callback);
   window.addEventListener("crypto-edu:progress", callback);
@@ -83,10 +87,7 @@ function subscribeToProgress(callback: () => void) {
 
 function getCompletedLevels() {
   const signature = allLevels
-    .map((level) => {
-      const key = `${COMPLETION_PREFIX}${String(level.number).padStart(2, "0")}-completed`;
-      return window.localStorage.getItem(key) === "true" ? "1" : "0";
-    })
+    .map((level) => window.localStorage.getItem(completionKey(level.number)) === "true" ? "1" : "0")
     .join("");
 
   if (signature !== cachedProgressSignature) {
@@ -226,6 +227,7 @@ function ChapterSection({
 }
 
 export default function LevelsPage() {
+  const [confirmingReset, setConfirmingReset] = useState(false);
   const completedLevels = useSyncExternalStore(
     subscribeToProgress,
     getCompletedLevels,
@@ -236,6 +238,14 @@ export default function LevelsPage() {
   const availableLevels = allLevels.filter(
     (level) => !completedLevels.has(level.number) && levelIsAvailable(level, completedLevels)
   );
+
+  function resetProgress() {
+    allLevels.forEach((level) => {
+      window.localStorage.removeItem(completionKey(level.number));
+    });
+    setConfirmingReset(false);
+    window.dispatchEvent(new Event("crypto-edu:progress"));
+  }
 
   return (
     <main className="page-shell px-6 pt-8 sm:pt-12 pb-32">
@@ -313,6 +323,47 @@ export default function LevelsPage() {
             ) : (
               <p className="map-progress-next">Complete an available level to unlock the next step.</p>
             )}
+            {completedLevels.has(1) ? (
+              <div className="mt-4 border-t border-[#374151] pt-4 text-left">
+                {confirmingReset ? (
+                  <div
+                    className="space-y-3 rounded-xl border border-[#fb7185]/40 bg-[#fb7185]/10 p-4"
+                    aria-labelledby="reset-progress-confirmation"
+                  >
+                    <p id="reset-progress-confirmation" className="font-bold text-[#f3f4f6]">
+                      Reset all progress? Every level will be marked as uncompleted.
+                    </p>
+                    <p className="text-sm">
+                      This cannot be undone. Are you sure you want to continue?
+                    </p>
+                    <div className="flex flex-wrap gap-3">
+                      <button
+                        type="button"
+                        onClick={() => setConfirmingReset(false)}
+                        className="rounded-lg border border-[#4b5563] px-4 py-2 text-sm font-bold text-[#f3f4f6] hover:bg-[#374151] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#818cf8]"
+                      >
+                        Cancel
+                      </button>
+                      <button
+                        type="button"
+                        onClick={resetProgress}
+                        className="rounded-lg border border-[#fb7185]/60 bg-[#fb7185]/15 px-4 py-2 text-sm font-bold text-[#fecdd3] hover:bg-[#fb7185]/25 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#fb7185]"
+                      >
+                        Reset all progress
+                      </button>
+                    </div>
+                  </div>
+                ) : (
+                  <button
+                    type="button"
+                    onClick={() => setConfirmingReset(true)}
+                    className="rounded-lg border border-[#fb7185]/50 px-4 py-2 text-sm font-bold text-[#fecdd3] hover:bg-[#fb7185]/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#fb7185]"
+                  >
+                    Reset progress
+                  </button>
+                )}
+              </div>
+            ) : null}
           </div>
         </header>
 
