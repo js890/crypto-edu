@@ -324,30 +324,30 @@ export default function LevelsPage() {
               <p className="map-progress-next">Complete an available level to unlock the next step.</p>
             )}
             {completedLevels.has(1) ? (
-              <div className="mt-4 border-t border-[#374151] pt-4 text-left">
+              <div className="map-progress-reset">
                 {confirmingReset ? (
                   <div
-                    className="space-y-3 rounded-xl border border-[#fb7185]/40 bg-[#fb7185]/10 p-4"
+                    className="map-progress-reset-confirmation"
                     aria-labelledby="reset-progress-confirmation"
                   >
-                    <p id="reset-progress-confirmation" className="font-bold text-[#f3f4f6]">
+                    <p id="reset-progress-confirmation" className="map-progress-reset-title">
                       Reset all progress? Every level will be marked as uncompleted.
                     </p>
-                    <p className="text-sm">
+                    <p className="map-progress-reset-description">
                       This cannot be undone. Are you sure you want to continue?
                     </p>
-                    <div className="flex flex-wrap gap-3">
+                    <div className="map-progress-reset-actions">
                       <button
                         type="button"
                         onClick={() => setConfirmingReset(false)}
-                        className="rounded-lg border border-[#4b5563] px-4 py-2 text-sm font-bold text-[#f3f4f6] hover:bg-[#374151] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#818cf8]"
+                        className="map-progress-reset-button"
                       >
                         Cancel
                       </button>
                       <button
                         type="button"
                         onClick={resetProgress}
-                        className="rounded-lg border border-[#fb7185]/60 bg-[#fb7185]/15 px-4 py-2 text-sm font-bold text-[#fecdd3] hover:bg-[#fb7185]/25 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#fb7185]"
+                        className="map-progress-reset-button map-progress-reset-button-danger"
                       >
                         Reset all progress
                       </button>
@@ -357,7 +357,7 @@ export default function LevelsPage() {
                   <button
                     type="button"
                     onClick={() => setConfirmingReset(true)}
-                    className="rounded-lg border border-[#fb7185]/50 px-4 py-2 text-sm font-bold text-[#fecdd3] hover:bg-[#fb7185]/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#fb7185]"
+                    className="map-progress-reset-button"
                   >
                     Reset progress
                   </button>

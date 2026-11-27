@@ -616,6 +616,81 @@
   background: rgba(250, 204, 21, 0.12);
 }
 
+.map-progress-reset {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-subtle);
+  text-align: left;
+}
+
+.map-progress-reset-confirmation {
+  display: grid;
+  gap: 0.55rem;
+  padding: 1rem;
+  border: 1px solid rgba(129, 140, 248, 0.32);
+  border-left: 3px solid var(--accent-indigo);
+  border-radius: 0 14px 14px 0;
+  background: var(--surface-elevated);
+  text-align: left;
+}
+
+.map-progress-reset-title {
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  font-weight: 800;
+  line-height: 1.5;
+}
+
+.map-progress-reset-description {
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+
+.map-progress-reset-actions {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 1.25rem;
+  row-gap: 0.75rem;
+  margin-top: 0.35rem;
+}
+
+.map-progress-reset-button {
+  display: inline-flex;
+  min-height: 2.6rem;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--border-strong);
+  border-radius: 10px;
+  background: var(--surface-color);
+  color: var(--text-primary);
+  font-size: 0.8rem;
+  font-weight: 800;
+  transition: border-color 0.18s ease, background-color 0.18s ease;
+}
+
+.map-progress-reset-button:hover {
+  border-color: var(--accent-indigo);
+  background: #252c4c;
+}
+
+.map-progress-reset-button-danger {
+  border-color: rgba(251, 113, 133, 0.55);
+  background: rgba(251, 113, 133, 0.12);
+  color: #fecdd3;
+}
+
+.map-progress-reset-button-danger:hover {
+  border-color: var(--accent-coral);
+  background: rgba(251, 113, 133, 0.2);
+}
+
+.map-progress-reset-button:focus-visible {
+  outline: 2px solid var(--accent-indigo);
+  outline-offset: 2px;
+}
+
 .map-progress-category {
   flex: 0 0 auto;
   padding: 0.12rem 0.38rem;
